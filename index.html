@@ -154,8 +154,8 @@ table.t tr:nth-child(even) td{background:var(--surface2)}
 .slide.dark table.t tr:nth-child(even) td{background:rgba(255,255,255,.045)}
 table.t td.k{font-weight:700;font-family:'Manrope'}
 .mono{font-family:'Manrope';letter-spacing:.06em}
-.hmintro{margin-top:18vh;transition:margin-top .6s cubic-bezier(.2,.7,.2,1)}
-.hmintro.up{margin-top:0}
+.hmintro{transform:translateY(15vh);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.hmintro.up{transform:none}
 .hmbig{font-family:'Manrope';font-weight:700;letter-spacing:-.015em;line-height:1.12;
   font-size:clamp(30px,4.1vw,55px);max-width:26ch}
 p.hmbig{font-weight:500;font-size:clamp(30px,4.1vw,55px);line-height:1.2;color:var(--muted);
@@ -164,6 +164,9 @@ p.hmbig{font-weight:500;font-size:clamp(30px,4.1vw,55px);line-height:1.2;color:v
 .hmintro.up p.hmbig{font-size:clamp(12.5px,1.4vw,16.5px);max-width:92ch;margin-top:7px;transition:font-size .55s ease}
 .hmintro.up ~ .grid3 .card{padding:15px 17px}
 @media (max-height:940px){
+  .hmintro{transform:translateY(11vh)}
+  .hmbig{font-size:clamp(22px,2.9vw,36px)}
+  p.hmbig{font-size:clamp(22px,2.9vw,36px);margin-top:12px}
   .hmintro.up .hmbig{font-size:clamp(18px,2.1vw,26px)}
   .hmintro.up p.hmbig{font-size:clamp(12px,1.3vw,15px)}
   #hmslide .grid3 .card{padding:13px 15px}
@@ -329,6 +332,11 @@ p.hmbig{font-weight:500;font-size:clamp(30px,4.1vw,55px);line-height:1.2;color:v
   .myth .m-l,.myth .m-r{padding:8px 14px}
   .myth .m-txt{font-size:clamp(12px,1.25vw,14.5px)}
   .m-tag{font-size:9px;margin-bottom:4px}
+}
+@media (max-height:760px){
+  .hmintro{transform:translateY(7vh)}
+  .hmbig,p.hmbig{font-size:clamp(18px,2.2vw,25px)}
+  #hmslide .eyebrow{margin-bottom:8px}
 }
 @media (max-height:790px){
   .card{padding:11px 15px}
