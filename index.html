@@ -34,24 +34,24 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:'Inter',
   background-size:72px 72px;mask-image:radial-gradient(circle at 50% 30%,transparent 32%,#000 92%)}
 .deck{position:relative;z-index:2;height:100vh;width:100vw}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(22px,3.8vw,62px) clamp(26px,5vw,84px);opacity:0;visibility:hidden;z-index:0;
+  padding:clamp(20px,3.2vw,54px) clamp(24px,4.2vw,74px);opacity:0;visibility:hidden;z-index:0;
   transform:scale(.985);transition:opacity .42s ease,transform .42s ease,visibility 0s linear .42s;
   pointer-events:none;overflow:hidden;backface-visibility:hidden}
 .slide.active{opacity:1;visibility:visible;transform:none;z-index:2;pointer-events:auto;
   transition:opacity .42s ease,transform .42s ease,visibility 0s linear 0s}
-.slide-inner{max-width:1280px;margin:0 auto;width:100%}
+.slide-inner{max-width:1440px;margin:0 auto;width:100%}
 .slide.dark{background:#080B14;color:#fff}
 .slide.dark .sub{color:#94A3B8}
 body:has(.slide.dark.active) .grid-bg,body:has(.slide.dark.active) .ambient,body:has(.slide.dark.active) .design-layer{opacity:0;transition:opacity .35s}
-.eyebrow{display:inline-block;margin-bottom:16px;font-family:'JetBrains Mono';font-weight:600;font-size:clamp(10.5px,1.15vw,13.5px);letter-spacing:.14em;color:var(--accent);transition:color 1s}
-h1.display{font-family:'Space Grotesk';font-weight:700;line-height:1.04;letter-spacing:-.02em;font-size:clamp(29px,4.5vw,56px)}
-h2.display{font-family:'Space Grotesk';font-weight:700;line-height:1.06;letter-spacing:-.018em;font-size:clamp(24px,3.2vw,41px)}
-.lede{font-size:clamp(16px,1.95vw,25px);line-height:1.4;font-weight:500}
-.sub{color:var(--muted);font-size:clamp(13px,1.35vw,17px);line-height:1.55;font-weight:500}
+.eyebrow{display:inline-block;margin-bottom:16px;font-family:'JetBrains Mono';font-weight:600;font-size:clamp(11.5px,1.3vw,15px);letter-spacing:.14em;color:var(--accent);transition:color 1s}
+h1.display{font-family:'Space Grotesk';font-weight:700;line-height:1.04;letter-spacing:-.02em;font-size:clamp(33px,5.2vw,66px)}
+h2.display{font-family:'Space Grotesk';font-weight:700;line-height:1.06;letter-spacing:-.018em;font-size:clamp(28px,3.8vw,50px)}
+.lede{font-size:clamp(18px,2.3vw,29px);line-height:1.4;font-weight:500}
+.sub{color:var(--muted);font-size:clamp(14.5px,1.55vw,19.5px);line-height:1.55;font-weight:500}
 .accentword{color:var(--accent);transition:color 1s}
 .serif-it{font-style:italic;font-weight:500}
-.stat{font-family:'Space Grotesk';font-weight:700;letter-spacing:-.03em;line-height:1;font-size:clamp(40px,6.4vw,86px);color:var(--accent);transition:color 1s}
-.stat-label{font-family:'Space Grotesk';color:var(--muted);font-size:clamp(11px,1.15vw,14px);margin-top:8px;line-height:1.35}
+.stat{font-family:'Space Grotesk';font-weight:700;letter-spacing:-.03em;line-height:1;font-size:clamp(46px,7.4vw,100px);color:var(--accent);transition:color 1s}
+.stat-label{font-family:'Space Grotesk';color:var(--muted);font-size:clamp(12.5px,1.3vw,16px);margin-top:8px;line-height:1.35}
 .slide.dark .stat-label{color:#94A3B8}
 .divider-bar{width:56px;height:5px;border-radius:4px;background:var(--accent);margin-top:14px}
 .source{position:absolute;left:clamp(26px,5vw,84px);bottom:60px;font-size:10.5px;color:var(--muted);font-family:'JetBrains Mono';max-width:80ch;opacity:.75}
@@ -87,7 +87,7 @@ body:has(.slide.dark.active) .logo{box-shadow:none}
 .hint{position:fixed;left:22px;bottom:26px;z-index:40;font-family:'JetBrains Mono';font-size:10px;color:var(--muted);opacity:.55}
 body:has(.slide.dark.active) .hint{color:#64748B}
 .kbd{border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:9.5px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:0 6px 22px -14px rgba(11,27,59,.22);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:23px 26px;box-shadow:0 6px 22px -14px rgba(11,27,59,.22);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
 .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -18px rgba(20,26,44,.3)}
 .slide.dark .card{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.11);box-shadow:none}
 .card-accent{border-left:5px solid var(--accent)}
@@ -96,28 +96,28 @@ body:has(.slide.dark.active) .hint{color:#64748B}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .pill{display:inline-block;font-family:'JetBrains Mono';font-size:10px;letter-spacing:.09em;text-transform:uppercase;padding:5px 10px;border-radius:5px;font-weight:600;background:var(--accent);color:#fff}
 .pill.soft{background:var(--accent-soft);color:var(--accent)}
-.chip{background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:12.5px;font-family:'Space Grotesk';font-weight:600}
+.chip{background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:14px;font-family:'Space Grotesk';font-weight:600}
 .slide.dark .chip{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#E2E8F0}
 .chiprow{display:flex;flex-wrap:wrap;gap:8px}
 ul.clean{list-style:none;display:flex;flex-direction:column;gap:10px}
-ul.clean li{display:flex;gap:10px;align-items:flex-start;font-size:clamp(12.5px,1.35vw,16px);line-height:1.42;font-weight:500}
+ul.clean li{display:flex;gap:10px;align-items:flex-start;font-size:clamp(14px,1.5vw,18px);line-height:1.42;font-weight:500}
 ul.clean li .tick{color:var(--accent);font-family:'Space Grotesk';font-weight:700;flex-shrink:0;margin-top:1px}
-.tick.no{color:#DC2626}
-.callout{background:var(--accent);color:#fff;border-radius:12px;padding:15px 22px;font-size:clamp(13px,1.5vw,18px);font-weight:600;line-height:1.4}
+.tick.no{color:#1B2130}
+.callout{background:var(--accent);color:#fff;border-radius:12px;padding:15px 22px;font-size:clamp(14.5px,1.7vw,21px);font-weight:600;line-height:1.4}
 .callout.soft{background:var(--accent-soft);color:var(--accent)}
 .slide.sechero{justify-content:center;background:#080B14;color:#fff}
 .sechero .secnum{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.16em;color:var(--accent);margin-bottom:18px}
-.sechero h1{font-size:clamp(38px,7vw,90px);font-family:'Space Grotesk';font-weight:700;letter-spacing:-.03em;line-height:1}
-.sechero .secsub{color:#94A3B8;font-size:clamp(14px,1.8vw,22px);margin-top:16px}
+.sechero h1{font-size:clamp(44px,8vw,104px);font-family:'Space Grotesk';font-weight:700;letter-spacing:-.03em;line-height:1}
+.sechero .secsub{color:#94A3B8;font-size:clamp(16px,2.1vw,26px);margin-top:16px}
 .myth{display:grid;grid-template-columns:1fr 1fr;border-radius:13px;overflow:hidden;border:1px solid var(--line)}
-.myth .m-l{background:#FEF2F2;padding:15px 19px;border-right:1px solid var(--line)}
+.myth .m-l{background:#EEF2F9;padding:15px 19px;border-right:1px solid var(--line)}
 .myth .m-r{background:var(--surface);padding:15px 19px}
 .slide.dark .myth{border-color:rgba(255,255,255,.12)}
-.slide.dark .myth .m-l{background:rgba(220,38,38,.11);border-right-color:rgba(255,255,255,.1)}
+.slide.dark .myth .m-l{background:rgba(255,255,255,.05);border-right-color:rgba(255,255,255,.1)}
 .slide.dark .myth .m-r{background:rgba(255,255,255,.05)}
 .m-tag{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px;display:block}
-.m-tag.bad{color:#DC2626}.m-tag.good{color:var(--accent)}
-.m-txt{font-size:clamp(12.5px,1.35vw,16px);line-height:1.42;font-weight:500}
+.m-tag.bad{color:#1B2130}.m-tag.good{color:var(--accent)}
+.m-txt{font-size:clamp(14px,1.5vw,18px);line-height:1.42;font-weight:500}
 .brings{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .slide.dark .brings{border-color:rgba(255,255,255,.12)}
 .brings>div{padding:18px 22px}
@@ -131,23 +131,23 @@ ul.clean li .tick{color:var(--accent);font-family:'Space Grotesk';font-weight:70
 .pipe .ph:first-child{border-radius:12px 0 0 12px}
 .slide.dark .pipe .ph{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
 .pipe .ph .pn{font-family:'JetBrains Mono';font-size:9.5px;color:var(--accent);letter-spacing:.1em;font-weight:600}
-.pipe .ph .pt{font-family:'Space Grotesk';font-weight:700;font-size:clamp(11px,1.25vw,15px);margin-top:7px;line-height:1.25}
+.pipe .ph .pt{font-family:'Space Grotesk';font-weight:700;font-size:clamp(12.5px,1.4vw,17px);margin-top:7px;line-height:1.25}
 .pipe .ph .pd{font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.35}
 .slide.dark .pipe .ph .pd{color:#94A3B8}
 .barwrap{display:flex;align-items:center;gap:16px;margin-bottom:13px}
-.barlabel{width:200px;font-weight:600;font-size:clamp(12px,1.3vw,15px);flex-shrink:0}
+.barlabel{width:200px;font-weight:600;font-size:clamp(13.5px,1.45vw,17px);flex-shrink:0}
 .bartrack{flex:1;height:30px;background:var(--surface2);border-radius:5px;overflow:hidden}
 .slide.dark .bartrack{background:rgba(255,255,255,.07)}
 .barfill{height:100%;width:0;border-radius:5px;background:var(--accent)}
 .barfill.grey{background:#94A3B8}
-.barval{width:112px;font-family:'Space Grotesk';font-weight:700;font-size:clamp(14px,1.75vw,21px);text-align:right;flex-shrink:0}
+.barval{width:112px;font-family:'Space Grotesk';font-weight:700;font-size:clamp(16px,2vw,24px);text-align:right;flex-shrink:0}
 .pyr{display:flex;flex-direction:column-reverse;gap:5px;align-items:center}
-.pyr .lvl{border-radius:9px;padding:11px 16px;text-align:center;font-family:'Space Grotesk';font-weight:700;font-size:clamp(11px,1.25vw,15px);color:#0B1B3B}
+.pyr .lvl{border-radius:9px;padding:11px 16px;text-align:center;font-family:'Space Grotesk';font-weight:700;font-size:clamp(12.5px,1.4vw,17px);color:#0B1B3B}
 .pyr .lvl small{display:block;font-family:'Inter';font-weight:500;font-size:11px;color:#3D4658;margin-top:3px}
-.pollopt{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 20px;font-size:clamp(13px,1.5vw,18px);font-weight:600}
+.pollopt{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 20px;font-size:clamp(14.5px,1.7vw,20px);font-weight:600}
 .slide.dark .pollopt{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
 .pollopt .pk{width:28px;height:28px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-weight:600;font-size:12.5px;flex-shrink:0}
-table.t{width:100%;border-collapse:collapse;font-size:clamp(11.5px,1.25vw,14.5px)}
+table.t{width:100%;border-collapse:collapse;font-size:clamp(13px,1.4vw,16.5px)}
 table.t th{background:var(--accent);color:#fff;text-align:left;padding:10px 14px;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:600}
 table.t td{padding:10px 14px;border-bottom:1px solid var(--line);font-weight:500}
 table.t tr:nth-child(even) td{background:var(--surface2)}
@@ -157,8 +157,8 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
 .mono{font-family:'JetBrains Mono'}
 .wn{opacity:0;transform:translateY(18px)}
 .hm{opacity:0;transform:translateY(20px)}
-.hl{background:linear-gradient(transparent 58%,rgba(250,204,21,.55) 58%);padding:0 2px;font-weight:700}
-.slide.dark .hl{background:linear-gradient(transparent 58%,rgba(250,204,21,.32) 58%);color:#FDE68A}
+.hl{background:linear-gradient(transparent 58%,rgba(37,99,235,.20) 58%);padding:0 2px;font-weight:700}
+.slide.dark .hl{background:linear-gradient(transparent 58%,rgba(0,212,200,.26) 58%);color:#BFD3FA}
 .shot{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;
   box-shadow:0 14px 34px -16px rgba(11,27,59,.4)}
 .shot img{width:100%;height:auto;display:block}
@@ -177,12 +177,12 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
 .slide.dark .ground{background:rgba(255,255,255,.14)}
 .fdeAv{position:absolute;bottom:52px;width:56px;height:56px;border-radius:50%;
   background:radial-gradient(circle at 35% 30%,#5B8CFF,#1D4ED8);display:flex;align-items:center;justify-content:center;
-  font-size:27px;box-shadow:0 8px 22px -6px rgba(29,78,216,.65);transition:left .85s cubic-bezier(.5,.05,.2,1);z-index:3}
+  font-size:27px;box-shadow:0 8px 22px -6px rgba(37,99,235,.6);transition:left .85s cubic-bezier(.5,.05,.2,1);z-index:3}
 .fdeAv .fl{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk';font-weight:700;font-size:11px;color:var(--accent);letter-spacing:.08em}
 .bub{position:absolute;background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:14px 18px;
   max-width:390px;font-weight:600;font-size:clamp(13px,1.45vw,17px);line-height:1.35;z-index:4;
   box-shadow:0 12px 30px -14px rgba(11,27,59,.4);transition:left .85s cubic-bezier(.5,.05,.2,1),opacity .4s;display:flex;gap:11px;align-items:flex-start}
-.slide.dark .bub{background:#0F1626;color:#fff}
+.slide.dark .bub{background:#0B1B3A;color:#fff}
 .bub::after{content:"";position:absolute;bottom:-11px;left:34px;width:18px;height:18px;background:inherit;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg)}
 .steps{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
 .step{font-family:'Space Grotesk';font-weight:700;font-size:clamp(10.5px,1.15vw,13.5px);padding:8px 15px;border-radius:22px;border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .4s}
@@ -200,16 +200,26 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
 .jp-body{padding:16px 22px}
 /* pricing */
 .price-old{position:relative;display:inline-block;font-family:'Space Grotesk';font-weight:700;color:var(--muted);font-size:clamp(24px,3.2vw,42px)}
-.price-old::after{content:"";position:absolute;left:-4%;right:-4%;top:52%;height:3px;background:#DC2626;transform:rotate(-9deg);border-radius:2px}
+.price-old::after{content:"";position:absolute;left:-4%;right:-4%;top:52%;height:3px;background:#1B2130;transform:rotate(-9deg);border-radius:2px}
 .price-new{font-family:'Space Grotesk';font-weight:700;color:var(--accent);font-size:clamp(38px,6vw,80px);letter-spacing:-.03em;line-height:1}
 /* curriculum */
 .cw{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start;padding:8px 0;border-bottom:1px solid var(--line)}
 .slide.dark .cw{border-bottom-color:rgba(255,255,255,.09)}
 .cw:last-child{border-bottom:none}
 .cw .wk{font-family:'JetBrains Mono';font-size:11px;font-weight:600;color:var(--accent);padding-top:2px}
-.cw .wt{font-size:clamp(11.5px,1.2vw,14px);font-weight:600;line-height:1.3}
+.cw .wt{font-size:clamp(13px,1.35vw,16px);font-weight:600;line-height:1.3}
 .partcard{border-top:4px solid var(--accent);background:var(--surface);border-radius:0 0 12px 12px;padding:16px 18px}
 .slide.dark .partcard{background:rgba(255,255,255,.045)}
+@media (max-height:820px){
+  .slide{padding-top:clamp(12px,1.9vw,30px);padding-bottom:clamp(12px,1.9vw,30px)}
+  .card{padding:15px 18px}
+  .callout{padding:11px 17px;font-size:clamp(13px,1.5vw,18px)}
+  .shot img{max-height:min(26vh,206px);object-fit:cover;object-position:top center}
+  ul.clean{gap:7px}
+  .grid3{gap:11px}.grid2{gap:12px}
+  h2.display{font-size:clamp(23px,3vw,38px)}
+  h1.display{font-size:clamp(27px,4vw,50px)}
+}
 @media (max-width:900px){.phasebar,.spine,.hint{display:none}}
 </style>
 </head>
@@ -256,7 +266,6 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
         <h1 class="display" style="font-size:clamp(28px,3.9vw,48px)">Swati Pandey</h1>
         <p class="lede serif-it accentword" style="margin-top:8px;font-size:clamp(15px,1.7vw,21px)">Head - India Admissions &amp; Career Team</p>
         <ul class="clean" style="margin-top:18px">
-          <li><span class="tick">✓</span><span><b>10+ years</b> building engineering careers</span></li>
           <li><span class="tick">✓</span><span>Speaks to hiring managers &amp; alumni daily</span></li>
           <li><span class="tick">✓</span><span>Previously: SWE at Amazon, Tech Mahindra</span></li>
         </ul>
@@ -265,10 +274,10 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
     <div class="reveal" style="transition-delay:.25s">
       <div class="pill soft" style="margin-bottom:14px">Interview Kickstart at a glance</div>
       <div class="grid2">
-        <div class="card card-accent"><div class="stat" data-count="11" data-suffix="+" style="font-size:clamp(26px,3.5vw,44px)">0</div><div class="stat-label">Years building engineering careers</div></div>
+        <div class="card card-accent"><div class="stat" data-count="12" data-suffix="+" style="font-size:clamp(26px,3.5vw,44px)">0</div><div class="stat-label">Years building engineering careers</div></div>
         <div class="card card-accent"><div class="stat" data-count="27000" data-suffix="+" style="font-size:clamp(26px,3.5vw,44px)">0</div><div class="stat-label">Alumni trained &amp; placed</div></div>
         <div class="card card-accent"><div class="stat" data-count="700" data-suffix="+" style="font-size:clamp(26px,3.5vw,44px)">0</div><div class="stat-label">Instructors from MAANG+ &amp; top product firms</div></div>
-        <div class="card card-accent"><div class="stat" style="font-size:clamp(26px,3.5vw,44px)">₹1 Cr</div><div class="stat-label">Highest package offered</div></div>
+        <div class="card card-accent"><div class="stat" style="font-size:clamp(26px,3.5vw,44px)">₹1.7 Cr</div><div class="stat-label">Highest package offered</div></div>
       </div>
     </div>
   </div>
@@ -421,20 +430,20 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
     <svg viewBox="0 0 460 400" class="venn reveal" style="width:100%;height:auto;max-height:55vh;transition-delay:.16s">
       <defs>
         <radialGradient id="vTop" cx="42%" cy="26%" r="76%">
-          <stop offset="0" stop-color="#7C8DB5" stop-opacity=".95"/><stop offset="1" stop-color="#1E2246" stop-opacity=".95"/></radialGradient>
+          <stop offset="0" stop-color="#5E77A8" stop-opacity=".95"/><stop offset="1" stop-color="#141B3A" stop-opacity=".95"/></radialGradient>
         <radialGradient id="vLeft" cx="34%" cy="72%" r="80%">
-          <stop offset="0" stop-color="#6A2740" stop-opacity=".95"/><stop offset="1" stop-color="#170F1C" stop-opacity=".96"/></radialGradient>
+          <stop offset="0" stop-color="#12224A" stop-opacity=".95"/><stop offset="1" stop-color="#0A0E17" stop-opacity=".96"/></radialGradient>
         <radialGradient id="vRight" cx="70%" cy="70%" r="80%">
-          <stop offset="0" stop-color="#8A6B08" stop-opacity=".95"/><stop offset="1" stop-color="#171204" stop-opacity=".96"/></radialGradient>
+          <stop offset="0" stop-color="#123A5E" stop-opacity=".95"/><stop offset="1" stop-color="#0A0E17" stop-opacity=".96"/></radialGradient>
         <radialGradient id="vCore" cx="34%" cy="62%" r="72%">
-          <stop offset="0" stop-color="#E45DE8"/><stop offset=".48" stop-color="#F2708D"/><stop offset="1" stop-color="#FBC28A"/></radialGradient>
+          <stop offset="0" stop-color="#2563EB"/><stop offset=".48" stop-color="#3B82F6"/><stop offset="1" stop-color="#00D4C8"/></radialGradient>
         <filter id="vGlow" x="-45%" y="-45%" width="190%" height="190%">
           <feGaussianBlur stdDeviation="12" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
       <g style="mix-blend-mode:screen">
         <circle class="vc" cx="230" cy="132" r="118" fill="url(#vTop)" stroke="#8FA0D8" stroke-width="1.2" stroke-opacity=".6"/>
-        <circle class="vc" cx="157" cy="256" r="118" fill="url(#vLeft)" stroke="#C86A8E" stroke-width="1.2" stroke-opacity=".55"/>
-        <circle class="vc" cx="303" cy="256" r="118" fill="url(#vRight)" stroke="#D6A83A" stroke-width="1.2" stroke-opacity=".5"/>
+        <circle class="vc" cx="157" cy="256" r="118" fill="url(#vLeft)" stroke="#5B8CFF" stroke-width="1.2" stroke-opacity=".55"/>
+        <circle class="vc" cx="303" cy="256" r="118" fill="url(#vRight)" stroke="#5B8CFF" stroke-width="1.2" stroke-opacity=".5"/>
       </g>
       <path class="vcore" d="M230 162 A118 118 0 0 1 278 214 A118 118 0 0 1 230 268 A118 118 0 0 1 182 214 A118 118 0 0 1 230 162 Z"
         fill="url(#vCore)" filter="url(#vGlow)" opacity=".95"/>
@@ -443,20 +452,20 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
       <text x="230" y="241" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-weight="700" font-size="15">Engineer</text>
       <text x="230" y="66" text-anchor="middle" fill="#E4E9F7" font-family="Space Grotesk" font-weight="600" font-size="15">Customer</text>
       <text x="230" y="86" text-anchor="middle" fill="#E4E9F7" font-family="Space Grotesk" font-weight="600" font-size="15">Facing</text>
-      <text x="72" y="330" text-anchor="middle" fill="#F3C9D6" font-family="Space Grotesk" font-weight="600" font-size="15">Software</text>
-      <text x="72" y="350" text-anchor="middle" fill="#F3C9D6" font-family="Space Grotesk" font-weight="600" font-size="15">Engineer</text>
-      <text x="390" y="330" text-anchor="middle" fill="#F5DFA4" font-family="Space Grotesk" font-weight="600" font-size="15">Solutions</text>
-      <text x="390" y="350" text-anchor="middle" fill="#F5DFA4" font-family="Space Grotesk" font-weight="600" font-size="15">Architect</text>
+      <text x="72" y="330" text-anchor="middle" fill="#BFD3FA" font-family="Space Grotesk" font-weight="600" font-size="15">Software</text>
+      <text x="72" y="350" text-anchor="middle" fill="#BFD3FA" font-family="Space Grotesk" font-weight="600" font-size="15">Engineer</text>
+      <text x="390" y="330" text-anchor="middle" fill="#BFD3FA" font-family="Space Grotesk" font-weight="600" font-size="15">Solutions</text>
+      <text x="390" y="350" text-anchor="middle" fill="#BFD3FA" font-family="Space Grotesk" font-weight="600" font-size="15">Architect</text>
     </svg>
     <div>
-      <div class="card reveal" style="transition-delay:.34s;margin-bottom:10px;border-left:4px solid #F3C9D6">
-        <b style="font-family:Space Grotesk;color:#F3C9D6">Software Engineer</b>
+      <div class="card reveal" style="transition-delay:.34s;margin-bottom:10px;border-left:4px solid #BFD3FA">
+        <b style="font-family:Space Grotesk;color:#BFD3FA">Software Engineer</b>
         <p class="sub" style="margin-top:5px;color:#CBD5E1;font-size:13px">You can build and ship code that survives production - real data, real load, real failure modes.</p></div>
-      <div class="card reveal" style="transition-delay:.44s;margin-bottom:10px;border-left:4px solid #A9BAE8">
-        <b style="font-family:Space Grotesk;color:#A9BAE8">Customer Facing</b>
+      <div class="card reveal" style="transition-delay:.44s;margin-bottom:10px;border-left:4px solid #93B4FF">
+        <b style="font-family:Space Grotesk;color:#93B4FF">Customer Facing</b>
         <p class="sub" style="margin-top:5px;color:#CBD5E1;font-size:13px">You can sit with a client, find the real problem behind the stated one, and be trusted inside their environment.</p></div>
-      <div class="card reveal" style="transition-delay:.54s;margin-bottom:12px;border-left:4px solid #F5DFA4">
-        <b style="font-family:Space Grotesk;color:#F5DFA4">Solutions Architect</b>
+      <div class="card reveal" style="transition-delay:.54s;margin-bottom:12px;border-left:4px solid #BFD3FA">
+        <b style="font-family:Space Grotesk;color:#BFD3FA">Solutions Architect</b>
         <p class="sub" style="margin-top:5px;color:#CBD5E1;font-size:13px">You can design a system that fits their constraints, integrations and compliance - not a reference diagram.</p></div>
       <div class="callout reveal" style="transition-delay:.64s;font-size:clamp(13px,1.45vw,17px)">Most engineers have one or two. <span class="hl" style="color:#0B1B3B">The FDE has all three</span> - that is the whole scarcity.</div>
     </div>
@@ -480,17 +489,17 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
     </div>
     <!-- customer -->
     <div class="bldg" style="right:5%">
-      <svg width="150" height="132" viewBox="0 0 150 132"><rect x="2" y="2" width="146" height="128" rx="16" fill="#FEF9E7" stroke="#F5C556" stroke-width="2.5"/>
-      <g fill="#FBE7A6"><rect x="24" y="26" width="24" height="20" rx="4"/><rect x="58" y="26" width="24" height="20" rx="4"/><rect x="92" y="26" width="24" height="20" rx="4"/></g>
-      <g fill="#FDF3D0" stroke="#F5C556" stroke-width="1.4"><rect x="24" y="56" width="76" height="12" rx="4"/><rect x="24" y="74" width="76" height="12" rx="4"/><rect x="24" y="92" width="76" height="12" rx="4"/></g>
+      <svg width="150" height="132" viewBox="0 0 150 132"><rect x="2" y="2" width="146" height="128" rx="16" fill="#F2F6FE" stroke="#93B4FF" stroke-width="2.5"/>
+      <g fill="#DCE7FB"><rect x="24" y="26" width="24" height="20" rx="4"/><rect x="58" y="26" width="24" height="20" rx="4"/><rect x="92" y="26" width="24" height="20" rx="4"/></g>
+      <g fill="#EDF3FE" stroke="#93B4FF" stroke-width="1.4"><rect x="24" y="56" width="76" height="12" rx="4"/><rect x="24" y="74" width="76" height="12" rx="4"/><rect x="24" y="92" width="76" height="12" rx="4"/></g>
       <g id="sysdots" fill="#CBD5E1"><circle cx="114" cy="62" r="4"/><circle cx="114" cy="80" r="4"/><circle cx="114" cy="98" r="4"/></g>
-      <rect x="58" y="106" width="34" height="24" rx="5" fill="#E0952B"/></svg>
-      <div class="lbl" style="color:#B45309">CUSTOMER</div>
+      <rect x="58" y="106" width="34" height="24" rx="5" fill="#2563EB"/></svg>
+      <div class="lbl" style="color:#1B2130">CUSTOMER</div>
     </div>
     <svg id="loop" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0" viewBox="0 0 1000 300" preserveAspectRatio="none">
-      <path d="M760,150 C620,20 380,20 235,140" stroke="#E0952B" stroke-width="3.5" stroke-dasharray="10 8" fill="none"/>
+      <path d="M760,150 C620,20 380,20 235,140" stroke="#2563EB" stroke-width="3.5" stroke-dasharray="10 8" fill="none"/>
     </svg>
-    <div id="loopLbl" style="position:absolute;left:44%;top:6%;transform:translateX(-50%);font-family:'Space Grotesk';font-weight:700;font-size:12.5px;color:#B45309;opacity:0;transition:opacity .5s">feedback and learnings travel back</div>
+    <div id="loopLbl" style="position:absolute;left:44%;top:6%;transform:translateX(-50%);font-family:'Space Grotesk';font-weight:700;font-size:12.5px;color:#1B2130;opacity:0;transition:opacity .5s">feedback and learnings travel back</div>
     <div class="fdeAv" id="fdeAv" style="left:20%">👨‍💻<span class="fl">FDE</span></div>
     <div class="bub" id="bub" style="left:26%;top:6%;opacity:0"><span id="bubIcon" style="font-size:20px">🔍</span><span id="bubTxt"></span></div>
   </div>
@@ -521,19 +530,19 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
   <h1 class="display reveal" style="transition-delay:.04s">Why this role exists</h1>
   <div style="display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;margin-top:34px;align-items:center">
     <div style="text-align:center">
-      <div class="stat reveal" data-count="95" data-prefix="~" data-suffix="%" style="transition-delay:.15s;font-size:clamp(62px,11vw,148px);color:#22D3EE">0</div>
+      <div class="stat reveal" data-count="95" data-prefix="~" data-suffix="%" style="transition-delay:.15s;font-size:clamp(62px,11vw,148px);color:#00D4C8">0</div>
       <div class="reveal" style="transition-delay:.25s;font-family:'Space Grotesk';font-weight:700;font-size:clamp(19px,2.4vw,30px);margin-top:6px">Pilots Failed</div>
       <p class="sub reveal" style="transition-delay:.32s;margin-top:14px;color:#94A3B8;max-width:34ch;margin-left:auto;margin-right:auto"><b style="color:#E2E8F0">MIT:</b> enterprise GenAI pilots delivering no measurable <b style="color:#E2E8F0">business impact</b></p>
     </div>
     <div>
-      <h2 class="display reveal" style="transition-delay:.3s;font-size:clamp(19px,2.5vw,32px);color:#22D3EE">The cause was deployment, not the models</h2>
+      <h2 class="display reveal" style="transition-delay:.3s;font-size:clamp(19px,2.5vw,32px);color:#00D4C8">The cause was deployment, not the models</h2>
       <ul class="clean" style="margin-top:22px">
-        <li class="frag"><span class="tick" style="color:#22D3EE">▸</span><span style="font-size:clamp(14px,1.6vw,20px)">Models got good. Making them work inside a real enterprise did not.</span></li>
-        <li class="frag"><span class="tick" style="color:#22D3EE">▸</span><span style="font-size:clamp(14px,1.6vw,20px)">The hard part is everything around the model - <b>security &amp; compliance, data quality, integration, governance, change management.</b></span></li>
+        <li class="frag"><span class="tick" style="color:#00D4C8">▸</span><span style="font-size:clamp(14px,1.6vw,20px)">Models got good. Making them work inside a real enterprise did not.</span></li>
+        <li class="frag"><span class="tick" style="color:#00D4C8">▸</span><span style="font-size:clamp(14px,1.6vw,20px)">The hard part is everything around the model - <b>security &amp; compliance, data quality, integration, governance, change management.</b></span></li>
       </ul>
     </div>
   </div>
-  <div class="frag" style="margin-top:34px;border-left:5px solid #22D3EE;padding:14px 26px">
+  <div class="frag" style="margin-top:34px;border-left:5px solid #00D4C8;padding:14px 26px">
     <p style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(16px,2.1vw,27px);line-height:1.3">The value and the hiring moved to the person who closes that gap in the field.</p>
   </div>
 </div>
@@ -676,13 +685,13 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
     <div class="card reveal" style="transition-delay:.2s;border-top:4px solid var(--accent)"><div class="pill">The stretch</div>
       <p class="sub" style="margin-top:10px;font-size:12.5px">Hiring for this exact title today</p>
       <div class="chiprow" style="margin-top:12px"><span class="chip">Salesforce</span><span class="chip">Google Cloud</span><span class="chip">OpenAI</span><span class="chip">Anthropic</span><span class="chip">Palantir</span><span class="chip">Microsoft</span><span class="chip">Databricks</span><span class="chip">AWS</span></div></div>
-    <div class="card reveal" style="transition-delay:.32s;border-top:4px solid #059669"><div class="pill" style="background:#059669">The safety net</div>
+    <div class="card reveal" style="transition-delay:.32s;border-top:4px solid #2563EB"><div class="pill" style="background:#2563EB">The safety net</div>
       <p class="sub" style="margin-top:10px;font-size:12.5px">Same work, adjacent titles</p>
       <div class="chiprow" style="margin-top:12px"><span class="chip">Applied AI Engineer</span><span class="chip">AI Solution Architect</span><span class="chip">Solutions Engineer</span></div>
       <p class="sub" style="margin-top:12px;font-size:12.5px">Indian product companies and AI-native startups hiring for the identical underlying skill.</p></div>
-    <div class="card reveal" style="transition-delay:.44s;border-top:4px solid #D97706"><div class="pill" style="background:#D97706">The floor</div>
+    <div class="card reveal" style="transition-delay:.44s;border-top:4px solid #2563EB"><div class="pill" style="background:#2563EB">The floor</div>
       <p class="sub" style="margin-top:10px;font-size:12.5px">National AI talent gap</p>
-      <div class="stat" style="margin-top:10px;font-size:clamp(30px,4.2vw,52px);color:#D97706">~53%</div>
+      <div class="stat" style="margin-top:10px;font-size:clamp(30px,4.2vw,52px);color:#2563EB">~53%</div>
       <p class="sub" style="margin-top:8px;font-size:12.5px">NASSCOM-Deloitte estimate of India's AI talent shortfall by 2026 - GCCs, IT services and funded startups hiring against it at volume.</p></div>
   </div>
   <div class="callout reveal" style="transition-delay:.58s;margin-top:24px">Search Naukri today: ~46,000 open "AI Engineer" roles vs a few hundred "Forward Deployed Engineer". The work is happening - mostly under other names. India is one step behind the US on the same adoption curve.</div>
@@ -699,7 +708,7 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
     <div class="barwrap"><div class="barlabel">FDE · Entry (0-2 yrs)</div><div class="bartrack"><div class="barfill" data-w="16"></div></div><div class="barval accentword">₹9.5-18.6L</div></div>
     <div class="barwrap"><div class="barlabel">FDE · Mid (3-7 yrs)</div><div class="bartrack"><div class="barfill" data-w="34"></div></div><div class="barval accentword">₹18-40L</div></div>
     <div class="barwrap"><div class="barlabel">FDE · Senior (8-12 yrs)</div><div class="bartrack"><div class="barfill" data-w="58"></div></div><div class="barval accentword">₹40-70L</div></div>
-    <div class="barwrap"><div class="barlabel">FDE · Lead / Principal</div><div class="bartrack"><div class="barfill" data-w="98" style="background:linear-gradient(90deg,#2563EB,#22D3EE)"></div></div><div class="barval" style="color:#22D3EE">₹80L-1.2Cr</div></div>
+    <div class="barwrap"><div class="barlabel">FDE · Lead / Principal</div><div class="bartrack"><div class="barfill" data-w="98" style="background:linear-gradient(90deg,#2563EB,#00D4C8)"></div></div><div class="barval" style="color:#00D4C8">₹80L-1.2Cr</div></div>
   </div>
   <div class="grid2" style="margin-top:26px">
     <div class="card reveal" style="transition-delay:.6s"><p class="sub" style="color:#CBD5E1"><b style="color:#fff">The ceiling is real.</b> Roughly <b style="color:#fff">8,000-12,000 AI engineers in India earn ₹1 Cr+</b> today, up from ~1,500 in 2020. Principal-level at Google/Microsoft India lands ₹80L-₹1.2Cr total comp including equity.</p></div>
@@ -912,17 +921,17 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative">
       <div style="text-align:center"><div class="pnode" style="width:88px;height:88px;border-radius:50%;background:linear-gradient(145deg,#3B82F6,#1D4ED8);margin:14px auto 0;display:flex;align-items:center;justify-content:center;font-family:Space Grotesk;font-weight:700;font-size:34px;color:#fff;box-shadow:0 10px 28px -10px rgba(37,99,235,.8)">1</div>
         <div style="font-family:Space Grotesk;font-weight:700;font-size:clamp(14px,1.6vw,19px);margin-top:12px">AI Engineering</div><div class="mono accentword" style="font-size:12px;margin-top:4px">W1 - W11</div></div>
-      <div style="text-align:center"><div class="pnode" style="width:88px;height:88px;border-radius:50%;background:linear-gradient(145deg,#22D3EE,#0891B2);margin:14px auto 0;display:flex;align-items:center;justify-content:center;font-family:Space Grotesk;font-weight:700;font-size:34px;color:#fff;box-shadow:0 10px 28px -10px rgba(34,211,238,.7)">2</div>
-        <div style="font-family:Space Grotesk;font-weight:700;font-size:clamp(14px,1.6vw,19px);margin-top:12px">AI Pair Coding</div><div class="mono" style="font-size:12px;margin-top:4px;color:#22D3EE">W12</div></div>
-      <div style="text-align:center"><div class="pnode" style="width:88px;height:88px;border-radius:50%;background:linear-gradient(145deg,#818CF8,#4F46E5);margin:14px auto 0;display:flex;align-items:center;justify-content:center;font-family:Space Grotesk;font-weight:700;font-size:34px;color:#fff;box-shadow:0 10px 28px -10px rgba(99,102,241,.7)">3</div>
-        <div style="font-family:Space Grotesk;font-weight:700;font-size:clamp(14px,1.6vw,19px);margin-top:12px">FDE Spine</div><div class="mono" style="font-size:12px;margin-top:4px;color:#A5B4FC">W13 - W17</div></div>
-      <div style="text-align:center"><div class="pnode" style="width:88px;height:88px;border-radius:50%;background:linear-gradient(145deg,#2DD4BF,#0D9488);margin:14px auto 0;display:flex;align-items:center;justify-content:center;font-family:Space Grotesk;font-weight:700;font-size:34px;color:#fff;box-shadow:0 10px 28px -10px rgba(45,212,191,.7)">4</div>
-        <div style="font-family:Space Grotesk;font-weight:700;font-size:clamp(14px,1.6vw,19px);margin-top:12px">Interview Prep</div><div class="mono" style="font-size:12px;margin-top:4px;color:#5EEAD4">W18 - W23</div></div>
+      <div style="text-align:center"><div class="pnode" style="width:88px;height:88px;border-radius:50%;background:linear-gradient(145deg,#00D4C8,#2563EB);margin:14px auto 0;display:flex;align-items:center;justify-content:center;font-family:Space Grotesk;font-weight:700;font-size:34px;color:#fff;box-shadow:0 10px 28px -10px rgba(0,212,200,.6)">2</div>
+        <div style="font-family:Space Grotesk;font-weight:700;font-size:clamp(14px,1.6vw,19px);margin-top:12px">AI Pair Coding</div><div class="mono" style="font-size:12px;margin-top:4px;color:#00D4C8">W12</div></div>
+      <div style="text-align:center"><div class="pnode" style="width:88px;height:88px;border-radius:50%;background:linear-gradient(145deg,#93B4FF,#2563EB);margin:14px auto 0;display:flex;align-items:center;justify-content:center;font-family:Space Grotesk;font-weight:700;font-size:34px;color:#fff;box-shadow:0 10px 28px -10px rgba(37,99,235,.6)">3</div>
+        <div style="font-family:Space Grotesk;font-weight:700;font-size:clamp(14px,1.6vw,19px);margin-top:12px">FDE Spine</div><div class="mono" style="font-size:12px;margin-top:4px;color:#93B4FF">W13 - W17</div></div>
+      <div style="text-align:center"><div class="pnode" style="width:88px;height:88px;border-radius:50%;background:linear-gradient(145deg,#00D4C8,#2563EB);margin:14px auto 0;display:flex;align-items:center;justify-content:center;font-family:Space Grotesk;font-weight:700;font-size:34px;color:#fff;box-shadow:0 10px 28px -10px rgba(0,212,200,.6)">4</div>
+        <div style="font-family:Space Grotesk;font-weight:700;font-size:clamp(14px,1.6vw,19px);margin-top:12px">Interview Prep</div><div class="mono" style="font-size:12px;margin-top:4px;color:#00D4C8">W18 - W23</div></div>
     </div>
   </div>
   <div class="grid2" style="margin-top:32px">
     <div class="card reveal" style="transition-delay:.55s;border-left:4px dashed #3B82F6"><b style="font-family:Space Grotesk;color:#93B4FF">AI Capstone · W10-11</b><p class="sub" style="margin-top:6px;color:#CBD5E1">Enterprise multi-agent system, built and defended.</p></div>
-    <div class="card reveal" style="transition-delay:.65s;border-left:4px dashed #818CF8"><b style="font-family:Space Grotesk;color:#A5B4FC">FDE Capstone · W13-17</b><p class="sub" style="margin-top:6px;color:#CBD5E1">A full customer engagement - discovery through handover.</p></div>
+    <div class="card reveal" style="transition-delay:.65s;border-left:4px dashed #93B4FF"><b style="font-family:Space Grotesk;color:#93B4FF">FDE Capstone · W13-17</b><p class="sub" style="margin-top:6px;color:#CBD5E1">A full customer engagement - discovery through handover.</p></div>
   </div>
 </div></section>
 
@@ -945,8 +954,8 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
       <div class="cw"><div class="wk">W10-11</div><div class="wt" style="color:var(--accent)"><b>AI Capstone - enterprise multi-agent system</b></div></div>
     </div>
     <div>
-      <div class="partcard reveal" style="transition-delay:.3s;border-top-color:#0891B2">
-        <div class="mono" style="font-size:10.5px;letter-spacing:.09em;font-weight:600;color:#0891B2">PART 2 · W12</div>
+      <div class="partcard reveal" style="transition-delay:.3s;border-top-color:#2563EB">
+        <div class="mono" style="font-size:10.5px;letter-spacing:.09em;font-weight:600;color:#2563EB">PART 2 · W12</div>
         <b style="font-family:Space Grotesk;font-size:clamp(15px,1.7vw,20px);display:block;margin:5px 0 10px">AI Pair Coding</b>
         <ul class="clean" style="gap:8px">
           <li><span class="tick">▸</span><span>Real interview intent &amp; problem-solving mindset</span></li>
@@ -969,24 +978,24 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
   <span class="eyebrow reveal">&lt;Curriculum · Parts 3 &amp; 4&gt;</span>
   <h2 class="display reveal" style="transition-delay:.04s">The FDE craft - and the interview</h2>
   <div class="grid2" style="margin-top:20px;gap:18px">
-    <div class="partcard reveal" style="transition-delay:.16s;border-top-color:#4F46E5">
-      <div class="mono" style="font-size:10.5px;letter-spacing:.09em;font-weight:600;color:#4F46E5">PART 3 · W13-17</div>
+    <div class="partcard reveal" style="transition-delay:.16s;border-top-color:#2563EB">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.09em;font-weight:600;color:#2563EB">PART 3 · W13-17</div>
       <b style="font-family:Space Grotesk;font-size:clamp(15px,1.7vw,20px);display:block;margin:5px 0 10px">FDE Spine</b>
       <div class="cw"><div class="wk">W13</div><div class="wt">Customer discovery &amp; scoping · FDE capstone starts</div></div>
       <div class="cw"><div class="wk">W14</div><div class="wt">SoW, pricing &amp; solution architecture</div></div>
       <div class="cw"><div class="wk">W15</div><div class="wt">Building production agents</div></div>
       <div class="cw"><div class="wk">W16</div><div class="wt">APIs, MCP servers &amp; RBAC</div></div>
-      <div class="cw"><div class="wk">W17</div><div class="wt" style="color:#4F46E5"><b>Evals, observability &amp; customer handover</b></div></div>
+      <div class="cw"><div class="wk">W17</div><div class="wt" style="color:#2563EB"><b>Evals, observability &amp; customer handover</b></div></div>
       <p class="sub" style="margin-top:12px;font-size:12px">Primary stack: OpenAI Agents SDK + AWS Bedrock AgentCore. Capstone also delivered on Google ADK + Vertex AI and Claude Agent SDK + Azure.</p>
     </div>
-    <div class="partcard reveal" style="transition-delay:.3s;border-top-color:#0D9488">
-      <div class="mono" style="font-size:10.5px;letter-spacing:.09em;font-weight:600;color:#0D9488">PART 4 · W18-23</div>
+    <div class="partcard reveal" style="transition-delay:.3s;border-top-color:#2563EB">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.09em;font-weight:600;color:#2563EB">PART 4 · W18-23</div>
       <b style="font-family:Space Grotesk;font-size:clamp(15px,1.7vw,20px);display:block;margin:5px 0 10px">FDE Interview Prep</b>
       <div class="cw"><div class="wk">W18</div><div class="wt">Agentic research systems - planning, tools, guardrails</div></div>
       <div class="cw"><div class="wk">W19</div><div class="wt">Agentic text-to-SQL &amp; reliable data reasoning</div></div>
       <div class="cw"><div class="wk">W20</div><div class="wt">Multi-agent coordination &amp; shared intelligence</div></div>
       <div class="cw"><div class="wk">W21</div><div class="wt">Self-improving agents - evaluation &amp; verification loops</div></div>
-      <div class="cw"><div class="wk">W22</div><div class="wt" style="color:#0D9488"><b>Decomposition &amp; case-study interviews</b></div></div>
+      <div class="cw"><div class="wk">W22</div><div class="wt" style="color:#2563EB"><b>Decomposition &amp; case-study interviews</b></div></div>
       <div class="cw"><div class="wk">W23</div><div class="wt">Behavioural &amp; procurement-security interviews</div></div>
       <p class="sub" style="margin-top:12px;font-size:12px"><b>Self-paced track:</b> DSA (sorting, recursion, trees, graphs, DP) · resume &amp; LinkedIn masterclass · offer negotiation.</p>
     </div>
@@ -998,13 +1007,13 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
   <span class="eyebrow reveal">&lt;Industry-grade capstones&gt;</span>
   <h2 class="display reveal" style="transition-delay:.04s">You leave with a deployed system, not a certificate</h2>
   <div class="grid2" style="margin-top:26px">
-    <div class="card reveal" style="transition-delay:.2s;border-left:4px solid #818CF8">
-      <div class="pill" style="background:#4F46E5">FDE Capstone · PriorAuth AI</div>
+    <div class="card reveal" style="transition-delay:.2s;border-left:4px solid #93B4FF">
+      <div class="pill" style="background:#2563EB">FDE Capstone · PriorAuth AI</div>
       <p class="sub" style="margin-top:12px;color:#CBD5E1">A regional hospital network's prior-authorisation team is buckling under a 9-day turnaround and a pilot that died in HIPAA review. Across W13-17 you run discovery, write the SoW, then build a multi-agent co-pilot that reads the chart note, retrieves payer policy, drafts the auth request with citations, and routes ambiguous cases to a human reviewer.</p>
       <div class="chiprow" style="margin-top:12px"><span class="chip">FastMCP</span><span class="chip">SSO</span><span class="chip">Audit logging</span><span class="chip">Bedrock AgentCore</span></div>
     </div>
-    <div class="card reveal" style="transition-delay:.34s;border-left:4px solid #22D3EE">
-      <div class="pill" style="background:#0891B2">FDE Capstone · ClaimSense AI</div>
+    <div class="card reveal" style="transition-delay:.34s;border-left:4px solid #00D4C8">
+      <div class="pill" style="background:#2563EB">FDE Capstone · ClaimSense AI</div>
       <p class="sub" style="margin-top:12px;color:#CBD5E1">A regional auto insurer's adjusters are drowning in claim documents and the AI pilot has been stuck for six months. Starting from customer discovery and SoW, build a multi-agent + MCP + RAG system that reads police reports, photos and repair estimates, surfaces high-confidence first decisions, flags edge cases - and deploy it with a proper customer handover.</p>
       <div class="chiprow" style="margin-top:12px"><span class="chip">Multi-agent</span><span class="chip">RAG</span><span class="chip">Human-in-loop</span><span class="chip">Production handover</span></div>
     </div>
@@ -1051,10 +1060,10 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
   <div style="display:flex;flex-direction:column;gap:11px;margin-top:24px">
     <div class="card frag" style="border-left:5px solid var(--accent);padding:14px 22px"><b style="font-family:Space Grotesk">Headline</b> - positioned as someone who <b>ships production AI inside customer environments</b> (not "AI enthusiast")</div>
     <div class="card frag" style="border-left:5px solid var(--accent);padding:14px 22px"><b style="font-family:Space Grotesk">A hero deployment</b> - one flagship system: scoped → built → deployed → handed over, with a number on the outcome</div>
-    <div class="card frag" style="padding:16px 22px;border-left:5px solid #DC2626">
+    <div class="card frag" style="padding:16px 22px;border-left:5px solid #1B2130">
       <b style="font-family:Space Grotesk">Outcome bullets, not tool lists</b>
       <div style="margin-top:11px;display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;gap:10px;align-items:flex-start"><span class="tick no" style="font-weight:700">✗</span><span class="serif-it" style="color:#DC2626">"Built a bot with LangChain"</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span class="tick no" style="font-weight:700">✗</span><span class="serif-it" style="color:#1B2130">"Built a bot with LangChain"</span></div>
         <div style="display:flex;gap:10px;align-items:flex-start"><span class="tick" style="font-weight:700">✓</span><span class="serif-it accentword">"Deployed a multi-agent RAG assistant for a Fortune-100 bank's support org - cut handle time 35%, owned discovery to handover"</span></div>
       </div>
     </div>
@@ -1130,8 +1139,8 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
 (function(){
   const slides=Array.from(document.querySelectorAll('.slide'));
   const N=slides.length;let cur=0,frag=0;
-  const SECCOL={0:"#2563EB",1:"#DC2626",2:"#0891B2",3:"#059669",4:"#7C3AED",5:"#EA580C"};
-  const SECSOFT={0:"rgba(37,99,235,.10)",1:"rgba(220,38,38,.10)",2:"rgba(8,145,178,.10)",3:"rgba(5,150,105,.10)",4:"rgba(124,58,237,.10)",5:"rgba(234,88,12,.10)"};
+  const SECCOL={0:"#2563EB",1:"#2563EB",2:"#2563EB",3:"#2563EB",4:"#2563EB",5:"#2563EB"};
+  const SECSOFT={0:"rgba(37,99,235,.10)",1:"rgba(37,99,235,.10)",2:"rgba(37,99,235,.10)",3:"rgba(37,99,235,.10)",4:"rgba(37,99,235,.10)",5:"rgba(37,99,235,.10)"};
   const secOf=slides.map(s=>+(s.dataset.sec||0));
   const SECNAMES=['Intro','Myths','The Role','India Market','Your Fit','The Course'];
   const nb=document.getElementById('navbar');
@@ -1161,10 +1170,10 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
   /* ---- storytelling scene ---- */
   const STORY=[
     {icon:'🔍',txt:'First, I sit with your team and map how the work happens today.',pos:62,bub:52,col:'#2563EB'},
-    {icon:'🏗️',txt:'I build inside your cloud, on your data and permissions.',pos:62,bub:52,col:'#4F46E5'},
-    {icon:'🚀',txt:'I ship to production, wired into your live systems.',pos:62,bub:52,col:'#0891B2'},
-    {icon:'🔧',txt:'I keep it running, and train your team to own it.',pos:62,bub:52,col:'#0D9488'},
-    {icon:'🔁',txt:'Home with the learnings, and scoping the next engagement.',pos:22,bub:14,col:'#D97706'}
+    {icon:'🏗️',txt:'I build inside your cloud, on your data and permissions.',pos:62,bub:52,col:'#2563EB'},
+    {icon:'🚀',txt:'I ship to production, wired into your live systems.',pos:62,bub:52,col:'#2563EB'},
+    {icon:'🔧',txt:'I keep it running, and train your team to own it.',pos:62,bub:52,col:'#2563EB'},
+    {icon:'🔁',txt:'Home with the learnings, and scoping the next engagement.',pos:22,bub:14,col:'#2563EB'}
   ];
   function updateStory(n){
     const sc=document.getElementById('scene');if(!sc)return;
@@ -1182,7 +1191,7 @@ table.t td.k{font-weight:700;font-family:'Space Grotesk'}
     document.getElementById('bubIcon').textContent=s.icon;
     document.getElementById('bubTxt').textContent=s.txt;
     Array.from(stepsEl).forEach((el,i)=>{el.classList.toggle('on',i===n-1);el.classList.toggle('done',i<n-1);});
-    if(dots)Array.from(dots.children).forEach(c=>c.setAttribute('fill',n>=3?'#16A34A':'#CBD5E1'));
+    if(dots)Array.from(dots.children).forEach(c=>c.setAttribute('fill',n>=3?'#00D4C8':'#CBD5E1'));
     loop.style.opacity=n===5?'1':'0';loopLbl.style.opacity=n===5?'1':'0';
     if(G){G.fromTo(bub,{scale:.9},{scale:1,duration:.4,ease:'back.out(1.7)'});
       if(n===5)G.fromTo(loop.querySelector('path'),{opacity:0},{opacity:1,duration:.7});}
