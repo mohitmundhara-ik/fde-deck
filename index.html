@@ -66,8 +66,8 @@ h2.display{font-family:'Manrope';font-weight:700;line-height:1.06;letter-spacing
 .frag.ghost{position:absolute;width:0;height:0;opacity:0!important;pointer-events:none}
 .frag-hint{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:40;font-family:'Manrope';font-size:11px;color:var(--accent);opacity:0;transition:opacity .3s;pointer-events:none;background:var(--surface);border:1px solid var(--accent);border-radius:20px;padding:5px 14px}
 .frag-hint.on{opacity:.95}
-.logo{position:fixed;top:18px;right:22px;z-index:46;display:flex;align-items:center;background:#1477CF;border-radius:24px;padding:8px 18px;box-shadow:0 6px 18px -10px rgba(0,4,32,.35)}
-.logo img{height:17px;width:auto;display:block}
+.logo{position:fixed;top:clamp(14px,1.7vh,22px);right:clamp(18px,1.8vw,28px);z-index:46;display:flex;align-items:center;background:#1477CF;border-radius:26px;padding:clamp(9px,1.2vh,12px) clamp(19px,1.5vw,24px);box-shadow:0 6px 18px -10px rgba(0,4,32,.35)}
+.logo img{height:clamp(20px,1.55vw,26px);width:auto;display:block}
 
 .navbar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:46;
   display:flex;align-items:center;gap:2px;background:#fff;border-radius:30px;padding:5px 7px;
