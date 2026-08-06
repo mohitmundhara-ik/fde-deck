@@ -1514,6 +1514,44 @@ ul.clean li{align-items:flex-start}
 .roi-num{font-size:clamp(26px,3.3vw,52px)!important;line-height:1.32!important;padding-bottom:4px}
 .roi-lbl{font-size:clamp(11px,1.18vw,17px)!important}
 .roi-note{font-size:clamp(10px,1.06vw,15px)!important}
+
+/* --- stack + projects: stacked rows, projects on top --- */
+.tswrap{display:flex!important;flex-direction:column;gap:clamp(9px,1.5vh,20px)!important}
+.tswrap .lpgrid{grid-template-columns:repeat(4,1fr)!important;align-content:start}
+.tswrap .tsrows{display:grid!important;grid-template-columns:1fr 1fr;
+  gap:clamp(3px,.5vh,7px) clamp(12px,1.4vw,28px);justify-content:initial}
+.tswrap .tsrow:nth-last-child(2){border-bottom:none;padding-bottom:0}
+.tswrap .lpnote{margin-top:clamp(6px,1vh,12px)}
+
+/* --- stack + projects: fill the frame --- */
+.tswrap .lpname{font-size:clamp(10px,1.12vw,16px)!important}
+.tswrap .lpitem{padding:clamp(8px,1.4vh,16px) clamp(8px,.85vw,15px)!important}
+.tswrap .lpgrid{gap:clamp(7px,1.15vh,15px) clamp(8px,.9vw,16px)!important}
+.tswrap .tscat{font-size:clamp(10px,1.1vw,15.5px)!important}
+.tswrap .tstools{font-size:clamp(9.5px,1.04vw,15px)!important}
+.tswrap .tsrows{gap:clamp(5px,.85vh,12px) clamp(14px,1.5vw,30px)!important}
+.tswrap .tshead{font-size:clamp(11.5px,1.26vw,18px)!important}
+.tswrap .tspanel{padding:clamp(11px,1.9vh,24px) clamp(12px,1.2vw,24px)!important}
+
+/* --- stack + projects: claim the vertical space --- */
+.tswrap{margin-top:clamp(10px,2vh,26px)!important;gap:clamp(11px,2vh,26px)!important}
+.tswrap .lpitem{padding:clamp(10px,2vh,24px) clamp(9px,.95vw,17px)!important}
+.tswrap .lpname{font-size:clamp(10.5px,1.2vw,18px)!important}
+.tswrap .lpgrid{gap:clamp(8px,1.5vh,20px) clamp(9px,1vw,18px)!important}
+.tswrap .tsrows{gap:clamp(6px,1.15vh,17px) clamp(15px,1.6vw,32px)!important}
+.tswrap .tscat{font-size:clamp(10.5px,1.16vw,17px)!important}
+.tswrap .tstools{font-size:clamp(10px,1.1vw,16.5px)!important}
+.tswrap .tshead{font-size:clamp(12px,1.34vw,20px)!important;margin-bottom:clamp(8px,1.5vh,18px)!important}
+.tswrap .tspanel{padding:clamp(13px,2.4vh,30px) clamp(13px,1.3vw,26px)!important}
+.tswrap .lpnote{font-size:clamp(9px,.98vw,14px)!important}
+
+/* --- commenting disabled: hide the badge --- */
+#cmtBadge{display:none!important}
+
+/* --- org side panel: balance now that legend/terms are gone --- */
+.orgside{display:flex;flex-direction:column;justify-content:center}
+.orgside .onote{margin-bottom:clamp(7px,1.2vh,15px)}
+.orgside .onote:last-child{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -2049,12 +2087,9 @@ ul.clean li{align-items:flex-start}
       <div class="ocard pivot"><span class="oico">&#9679;</span><div class="obody"><div class="otitle">Senior FDE - the path splits here</div><div class="ometa">IC &middot; 4-6 yrs &middot; stay hands-on, or start leading</div><div class="odesc">You are the customer&#39;s main point of contact. You decide how it gets built.</div></div><div class="ocust"><span>Customers</span><b>1 or 2</b></div></div><div class="ocard "><span class="oico">&#9679;</span><div class="obody"><div class="otitle">Mid FDE</div><div class="ometa">IC &middot; 2-4 yrs</div><div class="odesc">Owns one part of the project - say all the data work - end to end.</div></div><div class="ocust"><span>Customers</span><b>Just 1</b></div></div><div class="ocard "><span class="oico">&#9679;</span><div class="obody"><div class="otitle">Associate FDE</div><div class="ometa">IC &middot; 0-2 yrs</div><div class="odesc">Writes code for one customer. A senior FDE checks it before it ships.</div></div><div class="ocust"><span>Customers</span><b>Just 1</b></div></div>
     </div>
     <div class="orgside reveal" style="transition-delay:.24s">
-      <div class="olegend"><div class="olegrow"><span class="oline solid"></span>Solid line = who you report to</div><div class="olegrow"><span class="oline dash"></span>Dashed line = the two ways up from Senior FDE</div></div>
       <div class="onote">Based on 350+ FDE job postings across India - experience bands and responsibilities are indicative.</div>
       <div class="onote">Organisation structures, titles and reporting lines vary across companies.</div>
       <div class="onote">Smaller projects may need one FDE, while larger engagements typically involve multiple FDEs and cross-functional teams.</div>
-      <div class="oterm"><b>Customer</b>Another company that paid your employer to build something. You work inside their offices and systems.</div>
-      <div class="oterm"><b>Engagement</b>One project for one customer, first meeting to handover. The same customer can run several.</div>
     </div>
   </div>
 </div>
@@ -2267,7 +2302,7 @@ ul.clean li{align-items:flex-start}
   </div>
 </div>
     <div class="weeks" id="weekview">
-      <div class="cgrid"><div class="cpart frag"><div class="chead g1"><b>Part 01 &middot; AI Engineering</b><span>Weeks 1-11</span></div><div class="crows"><div class="crow"><span class="cwk">W1-3</span><span class="cwt">Agents, RAG &amp; knowledge AI</span></div><div class="crow"><span class="cwk">W4-6</span><span class="cwt">Multi-agent teams, voice, MCP</span></div><div class="crow"><span class="cwk">W7-9</span><span class="cwt">AI search, safety, fine-tuning</span></div><div class="crow"><span class="cwk">W10-11</span><span class="cwt">Agentic AI Capstone</span></div></div><div class="cout"><span class="coutlbl">Unlocked</span>You can build AI systems that hold up in production.</div></div><div class="cpart frag"><div class="chead g2"><b>Part 02 &middot; AI Pair Coding</b><span>Week 12</span></div><div class="crows"><div class="crow"><span class="cwk">W12</span><span class="cwt">Coding with Claude - the 5-phase workflow</span></div></div><div class="cout"><span class="coutlbl">Unlocked</span>You ship production work at pace.</div></div><div class="cpart frag"><div class="chead g3"><b>Part 03 &middot; FDE Spine</b><span>Weeks 13-17</span></div><div class="crows"><div class="crow"><span class="cwk">W13</span><span class="cwt">Discovery &amp; scoping <b class="cust">with the customer</b></span></div><div class="crow"><span class="cwk">W14</span><span class="cwt">SoW &amp; pricing <b class="cust">for the customer</b></span></div><div class="crow"><span class="cwk">W15</span><span class="cwt">Production agents</span></div><div class="crow"><span class="cwk">W16</span><span class="cwt">Integration, MCP, RBAC</span></div><div class="crow"><span class="cwk">W17</span><span class="cwt">Handover <b class="cust">to the customer</b>, evals</span></div></div><div class="cout"><span class="coutlbl">Unlocked</span>You can run a customer engagement end to end.</div></div><div class="cpart frag"><div class="chead g4"><b>Part 04 &middot; FDE Interview Prep</b><span>Weeks 18-23</span></div><div class="crows"><div class="crow"><span class="cwk">W18-20</span><span class="cwt">Research agents, text-to-SQL, multi-agent</span></div><div class="crow"><span class="cwk">W21-23</span><span class="cwt">Self-improving agents, case &amp; behavioural</span></div><div class="crow"><span class="cwk">DSA</span><span class="cwt">Self-paced track, plus resume &amp; negotiation</span></div></div><div class="cout"><span class="coutlbl">Unlocked</span>You can prove every bit of it in the room.</div></div></div>
+      <div class="cgrid"><div class="cpart frag"><div class="chead g1"><b>Part 01 &middot; AI Engineering</b><span>Weeks 1-11</span></div><div class="crows"><div class="crow"><span class="cwk">W1-3</span><span class="cwt">Agents, RAG &amp; knowledge AI</span></div><div class="crow"><span class="cwk">W4-6</span><span class="cwt">Multi-agent teams, voice, MCP</span></div><div class="crow"><span class="cwk">W7-9</span><span class="cwt">AI search, safety, fine-tuning</span></div><div class="crow"><span class="cwk">W10-11</span><span class="cwt">Agentic AI Capstone</span></div></div><div class="cout"><span class="coutlbl">Unlocked</span>You can build AI systems that hold up in production.</div></div><div class="cpart frag"><div class="chead g2"><b>Part 02 &middot; AI Pair Coding</b><span>Week 12</span></div><div class="crows"><div class="crow"><span class="cwk">W12</span><span class="cwt">Coding with Claude - the 5-phase workflow</span></div></div><div class="cout"><span class="coutlbl">Unlocked</span>You ship production work at pace.</div></div><div class="cpart frag"><div class="chead g3"><b>Part 03 &middot; FDE Spine</b><span>Weeks 13-17</span></div><div class="crows"><div class="crow"><span class="cwk">W13</span><span class="cwt">Discovery &amp; scoping <b class="cust">with the customer</b></span></div><div class="crow"><span class="cwk">W14</span><span class="cwt">SoW &amp; pricing <b class="cust">for the customer</b></span></div><div class="crow"><span class="cwk">W15</span><span class="cwt">Production agents</span></div><div class="crow"><span class="cwk">W16</span><span class="cwt">Integration, MCP, RBAC</span></div><div class="crow"><span class="cwk">W17</span><span class="cwt">Handover <b class="cust">to the customer</b>, evals</span></div><div class="crow"><span class="cwk">W13-17</span><span class="cwt">FDE Capstone</span></div></div><div class="cout"><span class="coutlbl">Unlocked</span>You can run a customer engagement end to end.</div></div><div class="cpart frag"><div class="chead g4"><b>Part 04 &middot; FDE Interview Prep</b><span>Weeks 18-23</span></div><div class="crows"><div class="crow"><span class="cwk">W18-20</span><span class="cwt">Research agents, text-to-SQL, multi-agent</span></div><div class="crow"><span class="cwk">W21-23</span><span class="cwt">Self-improving agents, case &amp; behavioural</span></div><div class="crow"><span class="cwk">DSA</span><span class="cwt">Self-paced track, plus resume &amp; negotiation</span></div><div class="crow"><span class="cwk">EM/TL</span><span class="cwt">Live Leadership Workshop modules available</span></div></div><div class="cout"><span class="coutlbl">Unlocked</span>You can prove every bit of it in the room.</div></div></div>
 
   
       <div class="rankbar reveal" style="transition-delay:.16s">
@@ -2287,13 +2322,13 @@ ul.clean li{align-items:flex-start}
   <h2 class="display reveal" style="transition-delay:.04s;font-size:clamp(19px,2.5vw,36px)">The stack and the <span class="accentword">projects you ship</span></h2>
   <div class="tswrap">
     <div class="tspanel reveal" style="transition-delay:.1s">
-      <div class="tshead"><span class="tsnum">01</span>Tech stack covered across the program</div>
-      <div class="tsrows"><div class="tsrow"><span class="tscat">Languages &amp; Dev Tools</span><span class="tstools">Python &middot; VSCode &middot; Git &middot; Google Colab</span></div><div class="tsrow"><span class="tscat">App &amp; UI</span><span class="tstools">Streamlit &middot; FastAPI</span></div><div class="tsrow"><span class="tscat">Agent Frameworks</span><span class="tstools">LangChain &middot; LangGraph &middot; LlamaIndex &middot; Google ADK</span></div><div class="tsrow"><span class="tscat">LLMs &amp; APIs</span><span class="tstools">OpenAI API &middot; Tavily API &middot; SerpAPI</span></div><div class="tsrow"><span class="tscat">Retrieval &amp; Data</span><span class="tstools">FAISS &middot; Chroma &middot; Qdrant &middot; FastEmbed &middot; Hugging Face &middot; BGE &middot; OpenAI Embeddings &middot; Pandas &middot; HTTPX</span></div><div class="tsrow"><span class="tscat">Evaluation &amp; Safety</span><span class="tstools">LangSmith &middot; DeepEval &middot; Guardrails AI &middot; Microsoft Presidio &middot; tiktoken</span></div><div class="tsrow"><span class="tscat">Multimodal &amp; Protocols</span><span class="tstools">Whisper &middot; OpenAI TTS &middot; FastMCP &middot; A2A &middot; LangChain LCEL</span></div><div class="tsrow"><span class="tscat">Fine-Tuning</span><span class="tstools">Hugging Face Transformers &middot; PEFT &middot; QLoRA &middot; TRL SFTTrainer &middot; BitsAndBytes &middot; HF Hub</span></div><div class="tsrow"><span class="tscat">FDE Tooling</span><span class="tstools">OpenAI Agents SDK &middot; AWS Bedrock AgentCore</span></div><div class="tsrow"><span class="tscat">Deployment</span><span class="tstools">Docker &middot; AWS &middot; Kubernetes &middot; CI/CD concepts</span></div></div>
-    </div>
-    <div class="tspanel frag">
-      <div class="tshead"><span class="tsnum">02</span>Live guided projects &middot; built with the instructor</div>
+      <div class="tshead"><span class="tsnum">01</span>Live guided projects &middot; built with the instructor</div>
       <div class="lpgrid"><div class="lpitem"><span class="lpno">P1</span><span class="lpname">CRM Lead Qualifier Agent</span></div><div class="lpitem"><span class="lpno">P2</span><span class="lpname">SupportDesk-RAG</span></div><div class="lpitem"><span class="lpno">P3</span><span class="lpname">Multi-Agent Travel Planner</span></div><div class="lpitem"><span class="lpno">P4</span><span class="lpname">AxiomCart - Voice-Enabled Shopping Assistant</span></div><div class="lpitem"><span class="lpno">P5</span><span class="lpname">Real Estate Negotiation Simulator</span></div><div class="lpitem"><span class="lpno">P6</span><span class="lpname">Hybrid Product Search Agent</span></div><div class="lpitem"><span class="lpno">P7</span><span class="lpname">Production-Ready Fintech Support Agent</span></div><div class="lpitem"><span class="lpno">P8</span><span class="lpname">Domain-Specific Fine-Tuned Agent</span></div></div>
       <div class="lpnote">Eight projects, built live in class - not homework you attempt alone.</div>
+    </div>
+    <div class="tspanel frag">
+      <div class="tshead"><span class="tsnum">02</span>Tech stack covered across the program</div>
+      <div class="tsrows"><div class="tsrow"><span class="tscat">Languages &amp; Dev Tools</span><span class="tstools">Python &middot; VSCode &middot; Git &middot; Google Colab</span></div><div class="tsrow"><span class="tscat">App &amp; UI</span><span class="tstools">Streamlit &middot; FastAPI</span></div><div class="tsrow"><span class="tscat">Agent Frameworks</span><span class="tstools">LangChain &middot; LangGraph &middot; LlamaIndex &middot; Google ADK</span></div><div class="tsrow"><span class="tscat">LLMs &amp; APIs</span><span class="tstools">OpenAI API &middot; Tavily API &middot; SerpAPI</span></div><div class="tsrow"><span class="tscat">Retrieval &amp; Data</span><span class="tstools">FAISS &middot; Chroma &middot; Qdrant &middot; FastEmbed &middot; Hugging Face &middot; BGE &middot; OpenAI Embeddings &middot; Pandas &middot; HTTPX</span></div><div class="tsrow"><span class="tscat">Evaluation &amp; Safety</span><span class="tstools">LangSmith &middot; DeepEval &middot; Guardrails AI &middot; Microsoft Presidio &middot; tiktoken</span></div><div class="tsrow"><span class="tscat">Multimodal &amp; Protocols</span><span class="tstools">Whisper &middot; OpenAI TTS &middot; FastMCP &middot; A2A &middot; LangChain LCEL</span></div><div class="tsrow"><span class="tscat">Fine-Tuning</span><span class="tstools">Hugging Face Transformers &middot; PEFT &middot; QLoRA &middot; TRL SFTTrainer &middot; BitsAndBytes &middot; HF Hub</span></div><div class="tsrow"><span class="tscat">FDE Tooling</span><span class="tstools">OpenAI Agents SDK &middot; AWS Bedrock AgentCore</span></div><div class="tsrow"><span class="tscat">Deployment</span><span class="tstools">Docker &middot; AWS &middot; Kubernetes &middot; CI/CD concepts</span></div></div>
     </div>
   </div>
 </div>
@@ -2444,7 +2479,7 @@ ul.clean li{align-items:flex-start}
 
   <div class="rmgrid">
     <div>
-      <ul class="rmlist reveal" style="transition-delay:.16s"><li class="rmli"><span class="rmtag">95</span><span>Why 95 out of 100 enterprise AI projects never reach real use - and what that means for your career</span></li><li class="rmli"><span class="rmtag">IN</span><span>Four Indian rollouts, in detail: Air India, Kotak Mahindra, Tata Capital and HDFC Bank</span></li><li class="rmli"><span class="rmtag">WH</span><span>Who is hiring in India right now - named companies, with locations</span></li><li class="rmli"><span class="rmtag">&#8377;</span><span>What the role pays in India, in rupees, including real disclosed offers</span></li><li class="rmli"><span class="rmtag">23</span><span>The 23-week roadmap, laid out step by step</span></li></ul>
+      <ul class="rmlist reveal" style="transition-delay:.16s"><li class="rmli"><span class="rmtag">1</span><span>Why most enterprise AI projects never reach real use</span></li><li class="rmli"><span class="rmtag">2</span><span>Four Indian rollouts, in detail</span></li><li class="rmli"><span class="rmtag">3</span><span>Who is hiring in India right now</span></li><li class="rmli"><span class="rmtag">4</span><span>What the role pays in India</span></li><li class="rmli"><span class="rmtag">5</span><span>The 23-week roadmap, step by step</span></li></ul>
       <div class="rmcta reveal" style="transition-delay:.26s">
         <div class="rmnote">It lands in your inbox right after this session.</div>
         <a class="rmbtn" href="https://cal.com/gagandeep-k-mljpdb/15min" target="_blank" rel="noopener">Book your free 15-minute call &#8594;</a>
@@ -2928,7 +2963,9 @@ ul.clean li{align-items:flex-start}
     document.body.appendChild(a);a.click();
     setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},400);
   }
+  const COMMENTS_ENABLED=false;   // set true to re-enable double-right-click commenting
   document.addEventListener('contextmenu',e=>{
+    if(!COMMENTS_ENABLED)return;                    // commenting disabled
     if(e.target.closest('#cmtBox'))return;          // let the textarea keep its native menu
     e.preventDefault();
     const now=Date.now();
