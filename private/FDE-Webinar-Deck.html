@@ -2437,6 +2437,31 @@ body.perf #perfBadge{opacity:.62}
 .hggrid.cloud6{grid-template-columns:repeat(6,1fr)!important;
   gap:clamp(6px,1vh,14px) clamp(14px,1.7vw,36px)!important}
 .hggrid.cloud6 .hglogo img{width:100%!important}
+
+/* --- FDE story: the scarcity bar was sitting under the nav pill ---------- */
+@media (max-height:1010px){
+  .slide[data-nid="fdestory"] .scarcity{
+    margin-top:clamp(5px,.8vh,11px)!important;
+    padding:clamp(8px,1.3vh,14px) clamp(14px,1.5vw,26px)!important;
+    font-size:clamp(11px,1.2vw,17px)!important}
+  .slide[data-nid="fdestory"] .spanel{padding-top:clamp(6px,1vh,12px)}
+  .slide[data-nid="fdestory"] .fanwrap svg{max-height:clamp(120px,20vh,210px)}
+}
+@media (max-height:860px){
+  .slide[data-nid="fdestory"] .scarcity{
+    margin-top:4px!important;padding:6px 12px!important;
+    font-size:clamp(10px,1.05vw,14px)!important;border-radius:11px}
+  .slide[data-nid="fdestory"] .fanwrap svg{max-height:clamp(96px,16vh,150px)}
+  .slide[data-nid="fdestory"] .sphead{font-size:clamp(11px,1.15vw,16px)}
+  .slide[data-nid="fdestory"] .fanline{font-size:clamp(9.5px,1vw,14px)}
+}
+
+/* the two panels are what eat the height, so shrink the block itself -
+   zoom reduces layout height, unlike transform:scale which leaves a gap */
+@media (max-height:1010px){ .slide[data-nid="fdestory"] .storycols{zoom:.95} }
+@media (max-height:860px){  .slide[data-nid="fdestory"] .storycols{zoom:.88} }
+@media (max-height:800px){  .slide[data-nid="fdestory"] .storycols{zoom:.82} }
+@media (max-height:740px){  .slide[data-nid="fdestory"] .storycols{zoom:.79} }
 </style>
 </head>
 <body>
