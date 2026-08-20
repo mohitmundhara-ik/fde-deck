@@ -1866,7 +1866,7 @@ body.perf #perfBadge{opacity:.62}
 
 /* --- two roles on one scorecard slide --------------------------------- */
 .scgrid.duo{grid-template-columns:clamp(110px,11.5vw,190px) repeat(2,1fr)!important;
-  max-width:min(1240px,97%);margin-inline:auto;column-gap:clamp(12px,1.6vw,30px)}
+  width:100%;column-gap:clamp(12px,1.6vw,30px)}
 .scgrid.duo .scname{font-size:clamp(15px,1.75vw,26px)!important}
 .scgrid.duo .scpct{font-size:clamp(28px,3.5vw,52px)!important}
 .scgrid.duo .scbox li{font-size:clamp(10px,1.05vw,15px)!important}
@@ -2464,6 +2464,30 @@ body.perf #perfBadge{opacity:.62}
 @media (max-height:860px){  .slide[data-nid="fdestory"] .storycols{zoom:.88} }
 @media (max-height:800px){  .slide[data-nid="fdestory"] .storycols{zoom:.82} }
 @media (max-height:740px){  .slide[data-nid="fdestory"] .storycols{zoom:.79} }
+
+/* --- bottom clearance: program and org chart were sitting under the nav ---
+   scale the block rather than re-anchoring it, which only pushes the bottom
+   further down (zoom reduces layout height, transform:scale does not) */
+@media (max-height:1100px){
+  .slide[data-nid="program"] .stage{zoom:.9}
+  .slide[data-nid="orgchart"] .orgladder,
+  .slide[data-nid="orgchart"] .orggrid{zoom:.92}
+}
+@media (max-height:860px){
+  .slide[data-nid="program"] .stage{zoom:.84}
+  .slide[data-nid="orgchart"] .orgladder,
+  .slide[data-nid="orgchart"] .orggrid{zoom:.85}
+}
+@media (max-height:800px){
+  .slide[data-nid="program"] .stage{zoom:.79}
+  .slide[data-nid="orgchart"] .orgladder,
+  .slide[data-nid="orgchart"] .orggrid{zoom:.80}
+}
+@media (max-height:740px){
+  .slide[data-nid="program"] .stage{zoom:.73}
+  .slide[data-nid="orgchart"] .orgladder,
+  .slide[data-nid="orgchart"] .orggrid{zoom:.74}
+}
 </style>
 </head>
 <body>
@@ -2932,7 +2956,7 @@ body.perf #perfBadge{opacity:.62}
 <div class="source">FDE-readiness percentages and skill profiles from the IK Forward Deployed Engineer Scorecard, 2026. Directional 1-5 self-benchmark, not a survey score. Hiring companies from the IK FDE hiring landscape, India, Aug 2026.</div></section>
 <section data-nid="fit-engineering-manager" class="slide with-source" data-sec="2"><div class="slide-inner">
   <span class="eyebrow scfixed">&lt;How close you already are?&gt;</span>
-  <div class="sshead-row reveal" style="transition-delay:.10s"><div class="schead"><div class="scico"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="2.8"/><path d="M3.8 19c0-3 2.3-4.7 5.2-4.7S14.2 16 14.2 19"/><path d="M15.8 7.4a2.8 2.8 0 010 5.2M17.2 19c0-2.3-.8-3.6-2.1-4.4"/></svg></div><div><div class="scname">Engineering Manager</div><div class="sceye">TECH LEAD &middot; PEOPLE &middot; DELIVERY</div></div></div></div>
+  <div class="sshead-row reveal" style="transition-delay:.10s"><div class="schead"><div class="scico"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="2.8"/><path d="M3.8 19c0-3 2.3-4.7 5.2-4.7S14.2 16 14.2 19"/><path d="M15.8 7.4a2.8 2.8 0 010 5.2M17.2 19c0-2.3-.8-3.6-2.1-4.4"/></svg></div><div><div class="scname">Engineering Manager</div></div></div></div>
   <div class="sk3">
     <div class="skcol reveal" style="transition-delay:.1s">
       <div class="sslbl">FDE readiness</div>
@@ -3098,9 +3122,9 @@ body.perf #perfBadge{opacity:.62}
   <span class="eyebrow reveal">&lt;The breakout, in the India data&gt;</span>
   <h2 class="display reveal" style="transition-delay:.05s">Two roles broke out. The rest of the market is flat.</h2>
   <div class="barsblock">
-    <div class="barwrap"><div class="barlabel">Forward Deployed AI Engineer<small>India job demand, year on year</small></div><div class="bartrack"><div class="barfill" data-w="96"></div></div><div class="barval accentword">~800%</div></div>
-    <div class="barwrap"><div class="barlabel">AI / ML roles<small>Q1 FY26 postings</small></div><div class="bartrack"><div class="barfill" data-w="24"></div></div><div class="barval accentword">+38%</div></div>
-    <div class="barwrap"><div class="barlabel" style="opacity:.62">Non-AI tech roles<small>everything else in tech</small></div><div class="bartrack"><div class="barfill grey" data-w="8"></div></div><div class="barval" style="color:#9AA6BA">+8%</div></div>
+    <div class="barwrap reveal" style="transition-delay:0.12s"><div class="barlabel">Forward Deployed AI Engineer<small>India job demand, year on year</small></div><div class="bartrack"><div class="barfill" data-w="96"></div></div><div class="barval accentword">~800%</div></div>
+    <div class="barwrap reveal" style="transition-delay:0.21s"><div class="barlabel">AI / ML roles<small>Q1 FY26 postings</small></div><div class="bartrack"><div class="barfill" data-w="24"></div></div><div class="barval accentword">+38%</div></div>
+    <div class="barwrap reveal" style="transition-delay:0.30s"><div class="barlabel" style="opacity:.62">Non-AI tech roles<small>everything else in tech</small></div><div class="bartrack"><div class="barfill grey" data-w="8"></div></div><div class="barval" style="color:#9AA6BA">+8%</div></div>
   </div>
   <div class="callout reveal" style="transition-delay:.6s;margin-top:26px">The <span class="uacc">opportunity</span> is breaking out in India now! ~800% &#8776; <b>9x</b> growth - comparable with the same role that broke out <b>~12x</b> in the US.</div>
 </div>
