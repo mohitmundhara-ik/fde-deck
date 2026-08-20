@@ -52,7 +52,6 @@ Production, Preview and Development.
 | `SESSION_SECRET` | 32+ random chars. `openssl rand -base64 32` |
 | `ALLOWED_DOMAINS` | `interviewkickstart.com` |
 | `ALLOWED_EMAILS` | `sdizzthebest@gmail.com` |
-| `NEXT_PUBLIC_SITE_URL` | your deployed URL |
 | `SUPABASE_URL` | optional, for the sign-in log |
 | `SUPABASE_ANON_KEY` | optional, for the sign-in log |
 
@@ -93,11 +92,11 @@ Replace `private/FDE-Webinar-Deck.html` and redeploy. Nothing else changes.
 
 | Request | Result |
 |---|---|
-| `/deck` with no session | 307 -> `/login` |
-| `/deck` with a session for an IK address | 200, deck served |
-| `/deck` with a session for a listed outside address | 200, deck served |
-| `/deck` with a session for any other address | 307 -> `/login` |
-| `/deck` with a cookie signed with the wrong secret | 307 -> `/login` |
+| `/` with no session | 200, sign-in card |
+| `/` with a session for an IK address | 200, deck served |
+| `/` with a session for a listed outside address | 200, deck served |
+| `/` with a session for any other address | 200, sign-in card |
+| `/index.html`, `/deck`, any other path | 200, sign-in card - never the deck |
 | Forged Google token posted to the API | 401, rejected |
 
 ---
@@ -122,11 +121,11 @@ change the endpoint in `app/api/auth/google/route.ts`.
 
 | Path | What it does |
 |---|---|
-| `/` | redirects to `/deck` |
-| `/login` | Google sign-in button |
-| `/deck` | the deck, session required |
+| `/` | the whole thing - signed in shows the deck, signed out shows the sign-in card. The URL never changes. |
 | `/api/auth/google` | verifies the Google token, sets the session |
 | `/api/auth/logout` | clears the session |
+
+Any other path is rewritten to `/`, so there is no URL that leaks the deck.
 
 ---
 
