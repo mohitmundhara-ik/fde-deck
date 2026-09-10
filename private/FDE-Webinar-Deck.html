@@ -2057,38 +2057,7 @@ body.perf #perfBadge{opacity:.62}
   .scsolo .sccard svg{max-height:clamp(92px,14vh,140px)!important}
 }
 
-/* ===== access gate ==================================================== */
-#gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(160deg,#0A1230 0%,#0D1B47 55%,#08102A 100%);
-  font-family:'Manrope',system-ui,-apple-system,sans-serif;padding:24px}
-#gate.done{display:none}
-#gate::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,162,255,.22),transparent 62%);
-  top:-180px;right:-140px;pointer-events:none}
-#gate::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,162,255,.14),transparent 62%);
-  bottom:-190px;left:-120px;pointer-events:none}
-.gatecard{position:relative;width:min(430px,100%);background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:34px 32px 30px;
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  box-shadow:0 30px 70px -30px rgba(0,0,0,.7)}
-.gatelogo{height:30px;width:auto;display:block;margin-bottom:22px}
-.gatetitle{color:#fff;font-weight:800;font-size:21px;letter-spacing:-.01em;line-height:1.25}
-.gatesub{color:#9AA6BA;font-size:13px;line-height:1.5;margin-top:8px}
-#gateform{margin-top:22px}
-#gatemail{width:100%;box-sizing:border-box;background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;
-  font-family:inherit;font-size:14.5px;padding:12px 14px;outline:none;transition:border-color .15s}
-#gatemail::placeholder{color:#7C8AA3}
-#gatemail:focus{border-color:rgba(0,162,255,.75);background:rgba(255,255,255,.1)}
-#gatebtn{width:100%;margin-top:11px;background:#00A2FF;color:#fff;border:0;border-radius:10px;
-  font-family:inherit;font-weight:700;font-size:14.5px;padding:12px 14px;cursor:pointer;
-  transition:background .15s}
-#gatebtn:hover{background:#0090E4}
-#gateerr{color:#FF8A8A;font-size:12.5px;line-height:1.45;margin-top:10px;min-height:1em}
-.gatefoot{color:#66748C;font-size:11px;line-height:1.5;margin-top:18px;
-  border-top:1px solid rgba(255,255,255,.1);padding-top:14px}
-body.gated{overflow:hidden}
+
 
 /* employers on the role slides: one bordered box, label inside it */
 .hirewrap{margin-top:clamp(9px,1.5vh,20px)!important}
@@ -2126,10 +2095,8 @@ body.gated{overflow:hidden}
   font-size:clamp(19px,2.2vw,33px);line-height:1;letter-spacing:-.02em;margin-left:auto}
 .jdgrid{grid-template-columns:1fr 1fr!important}
 
-#gbtn{display:flex;justify-content:center;min-height:0}
-#gbtn:not(:empty){margin-bottom:4px}
-.gateor{display:flex;align-items:center;gap:10px;margin:14px 0 12px;color:#66748C;font-size:11.5px}
-.gateor::before,.gateor::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.14)}
+
+
 
 .ivnote.top{margin:clamp(7px,1.1vh,14px) 0 0!important;text-align:left!important;
   display:inline-block;max-width:min(860px,96%)!important}
@@ -2556,23 +2523,6 @@ body.gated{overflow:hidden}
 </style>
 </head>
 <body>
-<div id="gate" role="dialog" aria-modal="true" aria-label="Access required">
-  <div class="gatecard">
-    <div class="gatetitle">Interview Kickstart</div>
-    <div class="gatesub">This deck is internal. Sign in with your Interview Kickstart Google account.</div>
-    <div id="gateform">
-      <div id="gbtn"></div>
-      <div id="gatefallback">
-        <div class="gateor"><span>or</span></div>
-        <input id="gatemail" type="email" autocomplete="email" spellcheck="false"
-               placeholder="you@interviewkickstart.com" aria-label="Work email">
-        <button id="gatebtn" type="button">Continue</button>
-      </div>
-      <div id="gateerr" role="alert"></div>
-    </div>
-    <div class="gatefoot">Forward Deployed AI Engineer &middot; India masterclass. Not for external distribution.</div>
-  </div>
-</div>
 <script>
 /* ---- one-time realignment of saved speaker notes ----------------------
    Notes are stored against the slide INDEX. Two slides were removed on
@@ -4259,144 +4209,4 @@ body.gated{overflow:hidden}
 })();
 </script>
 
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script>
-/* ---- access gate: Google Sign-In, with an email fallback ----------------
-   PASTE YOUR OAUTH CLIENT ID BELOW. Google Cloud Console -> APIs & Services
-   -> Credentials -> Create OAuth client ID -> Web application, and add your
-   Vercel URL under "Authorised JavaScript origins".
-   Until it is set, the deck falls back to the typed-email gate.
-
-   Sign-ins are logged to Supabase (deck_notes, keys prefixed "access:").
-   __deckAccessLog() prints them.
-
-   NOTE: this runs in the browser. It is a deterrent, not security - the slide
-   content is in the page source regardless. Use Vercel Deployment Protection
-   for real access control.                                                  */
-(function(){
-  var GOOGLE_CLIENT_ID = '';          /* <-- paste client id here */
-
-  var KEY = 'ikFdeDeckAccess';
-  var ALLOW_DOMAINS = ['interviewkickstart.com'];
-  var ALLOW_EXACT   = ['sdizzthebest@gmail.com'];
-
-  var SUPA_URL = 'https://nalyeofonirmbkvblpyh.supabase.co';
-  var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hbHllb2ZvbmlybWJrdmJscHloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1MDY4MTMsImV4cCI6MjEwMDA4MjgxM30.MWZWgYP1HjXG_WPKiqZiMpgTGlbnuq2r4Nc8Yzi0SgU';
-
-  function allowed(raw){
-    var e = String(raw || '').trim().toLowerCase();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) return false;
-    if(ALLOW_EXACT.indexOf(e) !== -1) return true;
-    return ALLOW_DOMAINS.indexOf(e.slice(e.lastIndexOf('@') + 1)) !== -1;
-  }
-  function decodeJwt(t){
-    try{
-      var p = t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
-      return JSON.parse(decodeURIComponent(atob(p).split('').map(function(c){
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join('')));
-    }catch(e){ return null; }
-  }
-
-  function logAccess(email, how){
-    var when = new Date().toISOString();
-    var row = { key: 'access:' + when + ':' + email,
-                content: JSON.stringify({ email: email, at: when, via: how,
-                                          ua: navigator.userAgent.slice(0,140) }) };
-    try{
-      fetch(SUPA_URL + '/rest/v1/deck_notes', {
-        method: 'POST',
-        headers: { apikey: SUPA_KEY, Authorization: 'Bearer ' + SUPA_KEY,
-                   'Content-Type': 'application/json',
-                   Prefer: 'resolution=merge-duplicates,return=minimal' },
-        body: JSON.stringify([row])
-      }).catch(function(){});
-    }catch(e){}
-    try{
-      var local = JSON.parse(localStorage.getItem('ikFdeDeckAccessLog') || '[]');
-      local.push({ email: email, at: when, via: how });
-      localStorage.setItem('ikFdeDeckAccessLog', JSON.stringify(local.slice(-80)));
-    }catch(e){}
-  }
-
-  window.__deckAccessLog = function(){
-    fetch(SUPA_URL + '/rest/v1/deck_notes?select=key,content&key=like.access:*',
-          { headers: { apikey: SUPA_KEY, Authorization: 'Bearer ' + SUPA_KEY } })
-      .then(function(r){ return r.json(); })
-      .then(function(rows){
-        var out = rows.map(function(r){ try{ return JSON.parse(r.content); }catch(e){ return null; } })
-                      .filter(Boolean).sort(function(a,b){ return a.at < b.at ? 1 : -1; });
-        console.table(out); return out;
-      }).catch(function(e){ console.warn('[deck] could not read the access log', e); });
-  };
-
-  var gate = document.getElementById('gate');
-  if(!gate) return;
-
-  function unlock(){
-    gate.classList.add('done');
-    document.body.classList.remove('gated');
-    window.removeEventListener('keydown', swallow, true);
-  }
-  function swallow(ev){
-    if(gate.classList.contains('done')) return;
-    var t = ev.target;
-    if(t && t.id === 'gatemail') return;
-    ev.stopPropagation(); ev.preventDefault();
-  }
-  function deny(msg){ document.getElementById('gateerr').textContent = msg; }
-
-  var saved = null;
-  try{ saved = localStorage.getItem(KEY); }catch(e){}
-  if(saved && allowed(saved)){ unlock(); return; }
-
-  document.body.classList.add('gated');
-  window.addEventListener('keydown', swallow, true);
-
-  window.__gateCredential = function(resp){
-    var claims = decodeJwt(resp && resp.credential);
-    var email = claims && claims.email;
-    if(email && allowed(email)){
-      try{ localStorage.setItem(KEY, String(email).toLowerCase()); }catch(e){}
-      logAccess(String(email).toLowerCase(), 'google');
-      unlock();
-    } else {
-      deny(email ? (email + ' does not have access to this deck.')
-                 : 'Google sign-in failed. Try the email option below.');
-    }
-  };
-
-  function initGoogle(){
-    if(!GOOGLE_CLIENT_ID || !window.google || !google.accounts || !google.accounts.id) return false;
-    try{
-      google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID,
-                                      callback: window.__gateCredential });
-      google.accounts.id.renderButton(document.getElementById('gbtn'),
-        { theme:'filled_blue', size:'large', width:340, text:'signin_with', shape:'pill' });
-      document.getElementById('gatefallback').style.display = 'none';
-      return true;
-    }catch(e){ return false; }
-  }
-  var tries = 0;
-  (function waitForGoogle(){
-    if(initGoogle()) return;
-    if(++tries > 24) return;             /* no client id, or script blocked */
-    setTimeout(waitForGoogle, 250);
-  })();
-
-  function submit(){
-    var v = document.getElementById('gatemail').value;
-    if(allowed(v)){
-      try{ localStorage.setItem(KEY, String(v).trim().toLowerCase()); }catch(e){}
-      logAccess(String(v).trim().toLowerCase(), 'email');
-      unlock();
-    } else {
-      deny('That address does not have access. Use your Interview Kickstart email.');
-    }
-  }
-  document.getElementById('gatebtn').addEventListener('click', submit);
-  document.getElementById('gatemail').addEventListener('keydown', function(ev){
-    if(ev.key === 'Enter'){ ev.preventDefault(); submit(); }
-  });
-})();
-</script>
 </body></html>
