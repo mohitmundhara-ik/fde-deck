@@ -8,17 +8,22 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 /** One address for everything. Signed in -> the deck. Not signed in -> the
- *  sign-in card, rendered at "/" so the URL never changes. */
+ *  sign-in card, rendered at "/" so the URL never changes.
+ *
+ *  Set PUBLIC_ACCESS=true to drop the gate entirely and serve the deck to
+ *  anyone with the link. Remove the variable (or set anything else) to put
+ *  the sign-in back - no code change needed either way. */
 export async function GET(req: NextRequest) {
+  const open = process.env.PUBLIC_ACCESS === 'true';
   const session = await readSession(req.cookies.get(SESSION_COOKIE)?.value);
 
-  if (session?.email && isAllowed(session.email)) {
+  if (open || (session?.email && isAllowed(session.email))) {
     const file = path.join(process.cwd(), 'private', 'FDE-Webinar-Deck.html');
     const html = await readFile(file, 'utf8');
     return new NextResponse(html, {
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
-        'Cache-Control': 'private, no-store',
+        'Cache-Control': open ? 'public, max-age=300' : 'private, no-store',
         'X-Robots-Tag': 'noindex, nofollow',
       },
     });
