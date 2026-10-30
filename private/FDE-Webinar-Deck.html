@@ -4072,7 +4072,9 @@ body.perf #perfBadge{opacity:.62}
     const leg=storedFor(legacyKey(i,f));
     if(leg!==undefined)return leg;
     return def;}
-  function loadPrefs(){try{return Object.assign({theme:'dark',fontSize:15.5,speed:1},JSON.parse(localStorage.getItem(NOTES_PREF_KEY)||'{}'));}catch(e){return {theme:'dark',fontSize:15.5,speed:1};}}
+  function loadPrefs(){try{const p=Object.assign({theme:'dark',fontSize:17.5,speed:1},JSON.parse(localStorage.getItem(NOTES_PREF_KEY)||'{}'));
+      if(!p.fs175){p.fontSize=Math.max(p.fontSize,17.5);p.fs175=1;}   // one-time bump: 17.5px is the new minimum default
+      return p;}catch(e){return {theme:'dark',fontSize:17.5,speed:1};}}
   function savePrefs(p){try{localStorage.setItem(NOTES_PREF_KEY,JSON.stringify(p));}catch(e){}}
   let notesWin=null;
   function updateNotesWindow(){
