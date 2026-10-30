@@ -4255,8 +4255,8 @@ body.perf #perfBadge{opacity:.62}
       const line=parseFloat(notesWin.getComputedStyle(ta).fontSize)*1.7;
       if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next();}
       else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
-      else if(e.key==='ArrowDown'){e.preventDefault();ta.scrollBy({top:line*3,behavior:'smooth'});}
-      else if(e.key==='ArrowUp'){e.preventDefault();ta.scrollBy({top:-line*3,behavior:'smooth'});}
+      else if(e.key==='ArrowDown'){e.preventDefault();ta.scrollBy({top:line,behavior:'smooth'});}
+      else if(e.key==='ArrowUp'){e.preventDefault();ta.scrollBy({top:-line,behavior:'smooth'});}
       else if(!e.metaKey&&!e.ctrlKey&&(e.key==='+'||e.key==='=')){e.preventDefault();doc.getElementById('fontUp').click();}
       else if(!e.metaKey&&!e.ctrlKey&&(e.key==='-'||e.key==='_')){e.preventDefault();doc.getElementById('fontDown').click();}
     });
