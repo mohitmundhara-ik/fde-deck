@@ -4098,6 +4098,10 @@ body.perf #perfBadge{opacity:.62}
       paintLive();
     }
   }
+  /* If the deck tab reloads, an open notes window loses its link to the deck (arrows and
+     Prev/Next stop working). Tell the presenter to reconnect instead of failing silently. */
+  window.addEventListener('pagehide',function(){try{if(notesWin&&!notesWin.closed){
+    notesWin.document.body.innerHTML='<div style="margin:auto;padding:30px;text-align:center;font:600 16px/1.6 Inter,Arial,sans-serif;color:var(--text)">The deck was reloaded.<br>Click the deck and press <b>N</b> to reconnect your notes.</div>';}}catch(e){}});
   function openNotesWindow(){
     if(notesWin&&!notesWin.closed){notesWin.focus();updateNotesWindow();return;}
     const prefs=loadPrefs();
@@ -4135,7 +4139,7 @@ body.perf #perfBadge{opacity:.62}
       +'<div class="tgroup"><button id="playBtn">Play</button><button id="speedDown" class="iconbtn">-</button><span class="tlabel" id="speedLabel">1.0x</span><button id="speedUp" class="iconbtn">+</button></div>'
       +'</div>'
       +'<textarea id="notesTextarea" placeholder="Type your own notes for this slide. Saved automatically, per slide." spellcheck="true"></textarea>'
-      +'<div class="ctrls"><button id="npPrev">&lsaquo; Prev</button><span id="npcount"></span><span id="nplive" style="font-size:11px;font-weight:600;letter-spacing:.04em">Local only</span><button id="npNext">Next &rsaquo;</button></div>'
+      +'<div class="ctrls"><button id="npPrev">&lsaquo; Prev</button><span id="npcount"></span><span id="npkeys" style="font-size:11px;color:var(--muted)">&larr; &rarr; slides &middot; &uarr; &darr; scroll</span><span id="nplive" style="font-size:11px;font-weight:600;letter-spacing:.04em">Local only</span><button id="npNext">Next &rsaquo;</button></div>'
       +'</body></html>');
     notesWin.document.close();
     const doc=notesWin.document;
@@ -4145,7 +4149,8 @@ body.perf #perfBadge{opacity:.62}
     /* Edit: notes open read-only so a stray key press mid-session can't change the shared script. */
     const editBtn=doc.getElementById('editBtn');
     function setEditing(on){ta.readOnly=!on;doc.body.classList.toggle('editing',on);editBtn.classList.toggle('on',on);
-      editBtn.textContent=on?'Done editing':'Edit';if(on)ta.focus();}
+      editBtn.textContent=on?'Done editing':'Edit';if(on)ta.focus();
+      const k=doc.getElementById('npkeys');if(k)k.innerHTML=on?'Editing - arrows move the cursor':'&larr; &rarr; slides &middot; &uarr; &darr; scroll';}
     editBtn.onclick=function(){setEditing(ta.readOnly);};
     setEditing(false);
     /* Hide tools: collapses the toolbar to a single slim bar; remembered. */
