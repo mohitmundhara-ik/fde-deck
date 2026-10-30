@@ -4121,8 +4121,13 @@ body.perf #perfBadge{opacity:.62}
       +'button{background:var(--btnbg);border:1px solid var(--btnborder);color:var(--text);border-radius:7px;padding:7px 12px;font-size:12.5px;font-weight:600;cursor:pointer}'
       +'button:hover{border-color:var(--muted)}button.iconbtn{padding:7px 10px}'
       +'#npcount{color:var(--muted);font-size:12px}'
+      +'.tbright{display:flex;align-items:center;gap:8px}'
+      +'body.toolsHidden .toolbar,body.toolsHidden .warn{display:none}'
+      +'#editBtn.on{background:#1A7F4B;border-color:#1A7F4B;color:#fff}'
+      +'#notesTextarea[readonly]{cursor:default}'
+      +'body.editing #notesTextarea{box-shadow:inset 0 0 0 2px #1A7F4B}'
       +'</style></head><body>'
-      +'<div class="topbar"><b id="notesSlideLabel">Slide 1 / '+N+'</b><span class="warn">Shared notes - everyone with the link sees your edits</span></div>'
+      +'<div class="topbar"><b id="notesSlideLabel">Slide 1 / '+N+'</b><div class="tbright"><span class="warn">Shared notes - everyone with the link sees your edits</span><button id="editBtn" class="iconbtn">Edit</button><button id="hideBtn" class="iconbtn">Hide tools</button></div></div>'
       +'<div class="toolbar">'
       +'<div class="tgroup"><button id="themeBtn" class="iconbtn">Theme</button></div>'
       +'<div class="tgroup"><button id="fontDown" class="iconbtn">A-</button><span class="tlabel" id="fontLabel">16px</span><button id="fontUp" class="iconbtn">A+</button></div>'
@@ -4136,6 +4141,17 @@ body.perf #perfBadge{opacity:.62}
     const ta=doc.getElementById('notesTextarea');
     ta.dataset.key=noteKey(cur,frag);ta.value=getNoteForSlide(cur,frag);
     ta.addEventListener('input',()=>{lastTypedAt=Date.now();saveNoteForSlide(ta.dataset.key,ta.value);});
+    /* Edit: notes open read-only so a stray key press mid-session can't change the shared script. */
+    const editBtn=doc.getElementById('editBtn');
+    function setEditing(on){ta.readOnly=!on;doc.body.classList.toggle('editing',on);editBtn.classList.toggle('on',on);
+      editBtn.textContent=on?'Done editing':'Edit';if(on)ta.focus();}
+    editBtn.onclick=function(){setEditing(ta.readOnly);};
+    setEditing(false);
+    /* Hide tools: collapses the toolbar to a single slim bar; remembered. */
+    const hideBtn=doc.getElementById('hideBtn');
+    function setHidden(h){doc.body.classList.toggle('toolsHidden',h);hideBtn.textContent=h?'Show tools':'Hide tools';}
+    hideBtn.onclick=function(){const h=!doc.body.classList.contains('toolsHidden');setHidden(h);savePrefs(Object.assign(loadPrefs(),{hideTools:h}));};
+    setHidden(!!prefs.hideTools);
     doc.getElementById('npPrev').onclick=function(){prev();};
     doc.getElementById('npNext').onclick=function(){next();};
     let theme=prefs.theme;
