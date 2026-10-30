@@ -4067,7 +4067,10 @@ body.perf #perfBadge{opacity:.62}
      if a saved cover note lacks it, the welcome is shown above it. */
   const COVER_WELCOME="Hello everyone, and a very warm welcome to today's session on the Forward Deployed AI Engineer role, by Interview Kickstart. Thank you so much for making the time.\n\nWe'll start in a minute while people join. A bit of housekeeping while we wait: the session runs about an hour. Use the chat as much as you like - say hi, and drop your questions any time. We'll take them in the Q&A at the end.";
   function getNoteForSlide(i,f){
-    const t=getNoteForSlideRaw(i,f);
+    let t=getNoteForSlideRaw(i,f);
+    /* Sanjay is the instructor (IK, 30 Oct 2026). An older saved note that still talks about
+       Rancho is not shown - the built-in Sanjay script is shown instead. The saved note is kept. */
+    if(/Rancho/.test(t)){const d=DEFAULT_NOTES[i];t=Array.isArray(d)?(d[Math.min(f,d.length-1)]||''):(d||'');}
     if(SLIDE_NIDS[i]==='cover'&&!f&&t.indexOf("welcome to today's session")<0)return COVER_WELCOME+'\n\n'+t;
     return t;}
   function getNoteForSlideRaw(i,f){
