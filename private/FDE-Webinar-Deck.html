@@ -4179,6 +4179,15 @@ body.perf #perfBadge{opacity:.62}
     doc.getElementById('speedUp').onclick=function(){scrollSpeed=Math.min(5,+(scrollSpeed+0.2).toFixed(1));updateSpeedLabel();};
     updateSpeedLabel();
     notesWin.addEventListener('beforeunload',function(){stopScroll();});
+    /* Keys in the notes window (when not editing): left/right change slide, up/down scroll the notes. */
+    doc.addEventListener('keydown',function(e){
+      if(!ta.readOnly)return;
+      const line=parseFloat(notesWin.getComputedStyle(ta).fontSize)*1.7;
+      if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next();}
+      else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
+      else if(e.key==='ArrowDown'){e.preventDefault();ta.scrollBy({top:line*3,behavior:'smooth'});}
+      else if(e.key==='ArrowUp'){e.preventDefault();ta.scrollBy({top:-line*3,behavior:'smooth'});}
+    });
     updateNotesWindow();
   }
 
