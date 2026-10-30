@@ -4125,11 +4125,12 @@ body.perf #perfBadge{opacity:.62}
   /* Cover note always opens with the welcome (IK, 30 Oct 2026). Saved notes are not changed -
      if a saved cover note lacks it, the welcome is shown above it. */
   const COVER_WELCOME="Hello everyone, and a very warm welcome to today's session on the Forward Deployed AI Engineer role, by Interview Kickstart. Thank you so much for making the time.\n\nWe'll start in a minute while people join. A bit of housekeeping while we wait: the session runs about an hour. Use the chat as much as you like - say hi, and drop your questions any time. We'll take them in the Q&A at the end.";
+  const HIDDEN_OLD={};   // saved notes that still mention Rancho - viewable via 'Old saved note'
   function getNoteForSlide(i,f){
     let t=getNoteForSlideRaw(i,f);
     /* Sanjay is the instructor (IK, 30 Oct 2026). An older saved note that still talks about
        Rancho is not shown - the built-in Sanjay script is shown instead. The saved note is kept. */
-    if(/Rancho/.test(t)){const d=DEFAULT_NOTES[i];t=Array.isArray(d)?(d[Math.min(f,d.length-1)]||''):(d||'');}
+    if(/Rancho/.test(t)){HIDDEN_OLD[i+'_'+(f||0)]=t;const d=DEFAULT_NOTES[i];t=Array.isArray(d)?(d[Math.min(f,d.length-1)]||''):(d||'');}
     if(SLIDE_NIDS[i]==='cover'&&!f&&t.indexOf("welcome to today's session")<0)return COVER_WELCOME+'\n\n'+t;
     return t;}
   function getNoteForSlideRaw(i,f){
@@ -4154,6 +4155,7 @@ body.perf #perfBadge{opacity:.62}
       const cnt=doc.getElementById('npcount');
       const totalStates=noteTotalStates(cur);
       if(ta){ta.dataset.key=noteKey(cur,frag);ta.value=getNoteForSlide(cur,frag);ta.scrollTop=0;}
+      const ob=doc.getElementById('oldBtn');if(ob){ob.style.display=HIDDEN_OLD[cur+'_'+frag]?'inline-block':'none';ob.textContent='Old saved note';ob.dataset.on='';}
       const stateSuffix=totalStates>1?(' \u00b7 Build '+(frag+1)+'/'+totalStates):'';
       if(lbl)lbl.textContent='Slide '+(cur+1)+' / '+N+stateSuffix;
       if(cnt)cnt.textContent=(cur+1)+' / '+N+stateSuffix;
@@ -4195,7 +4197,7 @@ body.perf #perfBadge{opacity:.62}
       +'#notesTextarea[readonly]{cursor:default}'
       +'body.editing #notesTextarea{box-shadow:inset 0 0 0 2px #1A7F4B}'
       +'</style></head><body>'
-      +'<div class="topbar"><b id="notesSlideLabel">Slide 1 / '+N+'</b><div class="tbright"><span class="warn">Shared notes - everyone with the link sees your edits</span><button id="fontDown2" class="iconbtn miniFont">A-</button><button id="fontUp2" class="iconbtn miniFont">A+</button><button id="editBtn" class="iconbtn">Edit</button><button id="hideBtn" class="iconbtn">Hide tools</button></div></div>'
+      +'<div class="topbar"><b id="notesSlideLabel">Slide 1 / '+N+'</b><div class="tbright"><span class="warn">Shared notes - everyone with the link sees your edits</span><button id="fontDown2" class="iconbtn miniFont">A-</button><button id="fontUp2" class="iconbtn miniFont">A+</button><button id="oldBtn" class="iconbtn" style="display:none">Old saved note</button><button id="editBtn" class="iconbtn">Edit</button><button id="hideBtn" class="iconbtn">Hide tools</button></div></div>'
       +'<div class="toolbar">'
       +'<div class="tgroup"><button id="themeBtn" class="iconbtn">Theme</button></div>'
       +'<div class="tgroup"><button id="fontDown" class="iconbtn">A-</button><span class="tlabel" id="fontLabel">16px</span><button id="fontUp" class="iconbtn">A+</button></div>'
@@ -4215,6 +4217,12 @@ body.perf #perfBadge{opacity:.62}
       editBtn.textContent=on?'Done editing':'Edit';if(on)ta.focus();
       const k=doc.getElementById('npkeys');if(k)k.innerHTML=on?'Editing - arrows move the cursor':'&larr; &rarr; slides &middot; &uarr; &darr; scroll &middot; + &minus; text size';}
     editBtn.onclick=function(){setEditing(ta.readOnly);};
+    /* Old saved note: view (read-only) a saved note that is hidden because it still names Rancho. */
+    const oldBtn=doc.getElementById('oldBtn');
+    oldBtn.onclick=function(){const old=HIDDEN_OLD[cur+'_'+frag];if(!old)return;setEditing(false);
+      if(oldBtn.dataset.on){oldBtn.dataset.on='';oldBtn.textContent='Old saved note';ta.value=getNoteForSlide(cur,frag);}
+      else{oldBtn.dataset.on='1';oldBtn.textContent='Back to current note';ta.value='[OLDER SAVED NOTE - view only, not used in the deck]\n\n'+old;}
+      ta.scrollTop=0;};
     setEditing(false);
     /* Hide tools: collapses the toolbar to a single slim bar; remembered. */
     const hideBtn=doc.getElementById('hideBtn');
