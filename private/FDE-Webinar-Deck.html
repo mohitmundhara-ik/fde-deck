@@ -4038,7 +4038,7 @@ body.perf #perfBadge{opacity:.62}
   const SUPA_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hbHllb2ZvbmlybWJrdmJscHloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1MDY4MTMsImV4cCI6MjEwMDA4MjgxM30.MWZWgYP1HjXG_WPKiqZiMpgTGlbnuq2r4Nc8Yzi0SgU';      // your project's anon/public key
   const NOTES_TABLE = 'deck_notes';
 
-  let sb=null, remoteNotes={}, liveState='local', lastTypedAt=0, pending={}, flushTimer=null;
+  let sb=null, remoteNotes={}, remoteTs={}, liveState='local', lastTypedAt=0, pending={}, flushTimer=null;
 
   function setLiveState(st){liveState=st;paintLive();}
   function paintLive(){
@@ -4068,9 +4068,10 @@ body.perf #perfBadge{opacity:.62}
     flushTimer=setTimeout(flushPending,450);
   }
   const lastLocalWrite={};
-  function applyRemote(key,content){
+  function applyRemote(key,content,ts){
     if(Date.now()-(lastLocalWrite[key]||0)<4000)return;   // our own newer edit wins
-    remoteNotes[key]=content;
+    if((loadNoteTs()[key]||0)>(ts||Date.now()))return;     // a newer local edit wins
+    remoteNotes[key]=content;remoteTs[key]=ts||Date.now();
     if(!notesWin||notesWin.closed)return;
     const ta=notesWin.document.getElementById('notesTextarea');
     if(!ta||ta.dataset.key!==key)return;
@@ -4090,16 +4091,23 @@ body.perf #perfBadge{opacity:.62}
       return import(/* @vite-ignore */ CDNS[k]).catch(()=>load(k+1));
     })(0).then(m=>{
       sb=m.createClient(SUPA_URL,SUPA_ANON_KEY,{realtime:{params:{eventsPerSecond:5}}});
-      return sb.from(NOTES_TABLE).select('key,content');
+      return sb.from(NOTES_TABLE).select('*');
     }).then(res=>{
       if(res&&res.error)throw res.error;
-      (res&&res.data||[]).forEach(r=>{remoteNotes[r.key]=r.content;});
+      (res&&res.data||[]).forEach(r=>{remoteNotes[r.key]=r.content;remoteTs[r.key]=Date.parse(r.updated_at)||0;});
+      /* 5 Nov 2026: edits saved on this computer while the shared copy was unreachable (or before it
+         loaded) are newer than the shared copy - send them up instead of letting the old copy win. */
+      const lts=loadNoteTs(),loc=loadAllNotes();
+      Object.keys(lts).forEach(k=>{if(loc[k]!==undefined&&lts[k]>(remoteTs[k]||0)&&loc[k]!==remoteNotes[k]){
+        const same=loc[k]===defaultForKey(k);if(same)delete remoteNotes[k];else remoteNotes[k]=loc[k];
+        remoteTs[k]=lts[k];pending[k]=same?'':loc[k];}});
+      if(Object.keys(pending).length){if(flushTimer)clearTimeout(flushTimer);flushTimer=setTimeout(flushPending,450);}
       setLiveState('live');updateNotesWindow();
       if(typeof cmtBadge==='function'){cmtBadge();if(cmtOpen)cmtRender();}
       sb.channel('deck_notes_live')
         .on('postgres_changes',{event:'*',schema:'public',table:NOTES_TABLE},p=>{
           const row=p.new||{};
-          if(row.key!==undefined)applyRemote(row.key,row.content||'');
+          if(row.key!==undefined)applyRemote(row.key,row.content||'',Date.parse(row.updated_at)||0);
         }).subscribe();
     }).catch(()=>{setLiveState('error');});
   }
@@ -4107,6 +4115,9 @@ body.perf #perfBadge{opacity:.62}
   const NOTES_KEY='ikFdeDeckSpeakerNotes';
   const NOTES_PREF_KEY='ikFdeDeckSpeakerNotesPrefs';
   function loadAllNotes(){try{return JSON.parse(localStorage.getItem(NOTES_KEY)||'{}');}catch(e){return {};}}
+  const NOTES_TS_KEY='ikFdeDeckSpeakerNotesTs';     // when each note was last edited on this computer
+  function loadNoteTs(){try{return JSON.parse(localStorage.getItem(NOTES_TS_KEY)||'{}');}catch(e){return {};}}
+  function noteSavedAt(key){return Math.max(remoteTs[key]||0,loadNoteTs()[key]||0);}
   /* Notes are keyed by the slide's permanent data-nid, never by its position,
      so reordering or deleting slides can no longer shuffle anyone's notes. */
   const SLIDE_NIDS = Array.from(document.querySelectorAll('.slide')).map(function(s,i){
@@ -4123,6 +4134,7 @@ body.perf #perfBadge{opacity:.62}
     return Array.isArray(d)?(d[Math.min(f,d.length-1)]||''):(d||'');}
 
   function saveNoteForSlide(key,text){const all=loadAllNotes();all[key]=text;try{localStorage.setItem(NOTES_KEY,JSON.stringify(all));}catch(e){}
+    const ts=loadNoteTs();ts[key]=Date.now();try{localStorage.setItem(NOTES_TS_KEY,JSON.stringify(ts));}catch(e){}
     if(text===defaultForKey(key)){                 // unchanged from the script - clear the override
       delete remoteNotes[key];
       if(sb)queueRemote(key,'');                   // empty = fall back to the built-in script
@@ -4158,8 +4170,10 @@ body.perf #perfBadge{opacity:.62}
   function storedFor(key){
     if(key===null) return undefined;
     const rem = remoteNotes[key];
-    if(rem!==undefined && String(rem).trim()!=='') return rem;
     const saved = loadAllNotes()[key];
+    const localNewer = (loadNoteTs()[key]||0) > (remoteTs[key]||0);
+    if(localNewer && saved!==undefined && String(saved).trim()!=='') return saved;   // newest edit wins
+    if(rem!==undefined && String(rem).trim()!=='') return rem;
     if(saved!==undefined && String(saved).trim()!=='') return saved;
     return undefined;
   }
@@ -4207,10 +4221,11 @@ body.perf #perfBadge{opacity:.62}
     let t=getNoteForSlideRaw(i,f);
     /* Rancho is the instructor again (IK, 5 Nov 2026). A saved note that still talks about
        Sanjay is not shown - the built-in Rancho script is shown instead. The saved note is kept. */
-    if(/Sanjay/.test(t)){HIDDEN_OLD[i+'_'+(f||0)]=t;const d=DEFAULT_NOTES[i];t=Array.isArray(d)?(d[Math.min(f,d.length-1)]||''):(d||'');}
+    const savedAt=noteSavedAt(noteKey(i,f));
+    if(/Sanjay/.test(t)&&savedAt<Date.parse('2026-11-05T10:20:00Z')){HIDDEN_OLD[i+'_'+(f||0)]=t;const d=DEFAULT_NOTES[i];t=Array.isArray(d)?(d[Math.min(f,d.length-1)]||''):(d||'');}
     /* Lines IK asked to open a slide's note with (30 Oct 2026) - shown above saved notes too. */
-    const lead=NOTE_LEADS[SLIDE_NIDS[i]];if(lead&&!f&&t.indexOf(lead.slice(0,40))<0)return lead+'\n\n'+t;
-    if(SLIDE_NIDS[i]==='cover'&&!f&&t.indexOf("welcome to today's session")<0)return COVER_WELCOME+'\n\n'+t;
+    const lead=NOTE_LEADS[SLIDE_NIDS[i]];if(lead&&!f&&savedAt<Date.parse('2026-10-31T00:00:00Z')&&t.indexOf(lead.slice(0,40))<0)return lead+'\n\n'+t;
+    if(SLIDE_NIDS[i]==='cover'&&!f&&savedAt<Date.parse('2026-10-31T00:00:00Z')&&t.indexOf("welcome to today's session")<0)return COVER_WELCOME+'\n\n'+t;
     return t;}
   function getNoteForSlideRaw(i,f){
     const def=Array.isArray(DEFAULT_NOTES[i])?(DEFAULT_NOTES[i][Math.min(f,DEFAULT_NOTES[i].length-1)]||''):(DEFAULT_NOTES[i]||'');
