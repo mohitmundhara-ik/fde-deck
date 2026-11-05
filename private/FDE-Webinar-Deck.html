@@ -4259,7 +4259,7 @@ body.perf #perfBadge{opacity:.62}
   /* If the deck tab reloads, an open notes window loses its link to the deck (arrows and
      Prev/Next stop working). Tell the presenter to reconnect instead of failing silently. */
   window.addEventListener('pagehide',function(){try{if(notesWin&&!notesWin.closed){
-    notesWin.document.body.innerHTML='<div style="margin:auto;padding:30px;text-align:center;font:600 16px/1.6 Inter,Arial,sans-serif;color:var(--text)">The deck was reloaded.<br>Click the deck and press <b>N</b> to reconnect your notes.</div>';}}catch(e){}});
+    notesWin.document.body.innerHTML='<div style="margin:auto;padding:30px;text-align:center;font:600 16px/1.6 Inter,Arial,sans-serif;color:var(--text)">The deck was reloaded.<br>Click the deck and press <b>N</b> or triple-click it to reconnect your notes.</div>';}}catch(e){}});
   function openNotesWindow(){
     if(notesWin&&!notesWin.closed){notesWin.focus();updateNotesWindow();return;}
     const prefs=loadPrefs();
