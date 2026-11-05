@@ -2735,6 +2735,36 @@ body.perf #perfBadge{opacity:.62}
 .slide[data-nid="who-we-are"] .wwa-nm{font-size:clamp(10px,.9vw,15px)}
 .slide[data-nid="who-we-are"] .wwa-co{font-size:clamp(9px,.78vw,13px)}
 .slide[data-nid="who-we-are"] .wwa-b.frag{transform:translateX(28px)}.slide.active[data-nid="who-we-are"] .wwa-b.frag.shown{transform:none}
+/* 5 Nov: build-stack redesigned as a 3-step build path with a tools band */
+.b2-path{display:grid;grid-template-columns:minmax(0,1.15fr) auto minmax(0,1.25fr) auto minmax(0,.8fr);align-items:stretch;gap:clamp(6px,.7vw,12px);margin-top:clamp(10px,2vh,24px)}
+.b2-stage{border:1px solid rgba(0,162,255,.28);border-radius:16px;background:linear-gradient(180deg,rgba(0,162,255,.09),rgba(255,255,255,.02));padding:clamp(12px,1.8vh,20px) clamp(14px,1.3vw,22px)}
+.b2-fde{border-color:rgba(47,227,160,.45);background:linear-gradient(180deg,rgba(47,227,160,.12),rgba(255,255,255,.02))}
+.b2-h{display:flex;align-items:center;gap:12px;margin-bottom:clamp(8px,1.5vh,16px)}
+.b2-n{flex:none;width:clamp(30px,2.5vw,40px);height:clamp(30px,2.5vw,40px);border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#04112F;font-family:'Manrope';font-weight:800;font-size:clamp(15px,1.3vw,20px)}
+.b2-fde .b2-n{background:#2FE3A0}
+.b2-tt{font-family:'Manrope';font-weight:800;color:#fff;font-size:clamp(15px,1.4vw,22px);line-height:1.15}
+.b2-st{font-family:'Inter';font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9AA6BA;font-size:clamp(9px,.75vw,11.5px);margin-top:3px}
+.b2-proj{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(5px,1vh,10px) clamp(10px,1vw,16px)}
+.b2-proj li{display:flex;gap:8px;align-items:baseline;color:#E6EBF2;font-size:clamp(11px,.95vw,15px);line-height:1.3}
+.b2-proj li i{font-style:normal;font-family:'Manrope';font-weight:800;color:var(--accent);font-size:.85em;flex:none}
+.b2-cap{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(6px,1.1vh,12px) clamp(10px,1vw,16px)}
+.b2-cap li{border-left:2px solid rgba(0,162,255,.55);padding-left:10px}
+.b2-cap li.byop{border-left-color:#E8D44D}
+.b2-cap b,.b2-big b{display:block;font-family:'Manrope';font-weight:700;color:#fff;font-size:clamp(11.5px,1vw,15.5px);line-height:1.25}
+.b2-cap span{display:block;color:#9AA6BA;font-size:clamp(10px,.82vw,13px);line-height:1.3;margin-top:1px}
+.b2-big{list-style:none;margin:0;padding:0;display:grid;gap:clamp(8px,1.4vh,14px)}
+.b2-big li{border-radius:12px;border:1px solid rgba(47,227,160,.4);background:rgba(47,227,160,.07);padding:clamp(10px,1.6vh,16px) 14px}
+.b2-big b{font-size:clamp(16px,1.6vw,25px)}
+.b2-big span{display:block;color:#2FE3A0;font-family:'Inter';font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:clamp(9px,.75vw,11.5px);margin-top:4px}
+.b2-arrow{align-self:center;width:clamp(14px,1.4vw,24px);height:2px;background:rgba(0,162,255,.6);position:relative}
+.b2-arrow::after{content:'';position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid rgba(0,162,255,.9);border-right:0}
+.b2-tools{margin-top:clamp(10px,1.8vh,20px);display:grid;grid-template-columns:1fr;gap:clamp(6px,1vh,12px);border-top:1px solid rgba(255,255,255,.12);padding-top:clamp(10px,1.6vh,18px)}
+.b2-tl{font-family:'Inter';font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9AA6BA;font-size:clamp(10px,.85vw,13px)}
+.b2-tg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(6px,1.1vh,12px) clamp(10px,1.1vw,18px)}
+.b2-t b{display:block;font-family:'Inter';font-weight:700;color:var(--accent);font-size:clamp(9.5px,.8vw,12.5px);letter-spacing:.02em}
+.b2-t span{display:block;color:#C9D2E0;font-size:clamp(9px,.76vw,12px);line-height:1.3;margin-top:2px}
+.b2-line{margin-top:clamp(10px,1.8vh,20px);font-family:'Manrope';font-weight:700;color:#fff;font-size:clamp(14px,1.35vw,21px)}
+.b2-line .hl{color:#2FE3A0!important;border-bottom-color:#2FE3A0!important}
 </style>
 </head>
 <body>
@@ -3603,33 +3633,15 @@ body.perf #perfBadge{opacity:.62}
 <section data-nid="build-stack" class="slide dark with-source" data-sec="4"><div class="slide-inner">
   <span class="eyebrow reveal">&lt;Projects, capstones &amp; tools&gt;</span>
   <h2 class="display reveal" style="transition-delay:.04s;font-size:clamp(20px,2.6vw,38px)">What you <span class="accentword">actually build</span> - and what you build it with</h2>
-  <div class="bs-grid">
-    <div class="bs-side reveal" style="transition-delay:.1s"><div class="bs-bar"><span class="bs-n">A</span>Tools you will use</div><div class="bs-stack"><div class="bs-row"><b>Languages &amp; Dev Tools</b><span>Python &middot; VSCode &middot; Git &middot; Google Colab</span></div><div class="bs-row"><b>App &amp; UI</b><span>Streamlit &middot; FastAPI</span></div><div class="bs-row"><b>Agent Frameworks</b><span>LangChain &middot; LangGraph &middot; LlamaIndex &middot; Google ADK</span></div><div class="bs-row"><b>LLMs &amp; APIs</b><span>OpenAI API &middot; Tavily API &middot; SerpAPI</span></div><div class="bs-row"><b>Retrieval &amp; Data</b><span>FAISS &middot; Chroma &middot; Qdrant &middot; FastEmbed &middot; Hugging Face &middot; BGE &middot; OpenAI Embeddings &middot; Pandas &middot; HTTPX</span></div><div class="bs-row"><b>Evaluation &amp; Safety</b><span>LangSmith &middot; DeepEval &middot; Guardrails AI &middot; Microsoft Presidio &middot; tiktoken</span></div><div class="bs-row"><b>Multimodal &amp; Protocols</b><span>Whisper &middot; OpenAI TTS &middot; FastMCP &middot; A2A &middot; LangChain LCEL</span></div><div class="bs-row"><b>Fine-Tuning</b><span>Hugging Face Transformers &middot; PEFT &middot; QLoRA &middot; TRL SFTTrainer &middot; BitsAndBytes &middot; HF Hub</span></div><div class="bs-row"><b>FDE Tooling</b><span>OpenAI Agents SDK &middot; AWS Bedrock AgentCore</span></div><div class="bs-row"><b>Deployment</b><span>Docker &middot; AWS &middot; Kubernetes &middot; CI/CD concepts</span></div></div></div>
-    <div class="bs-cap">
-    <div class="bs-bar bs-bar2 reveal" style="transition-delay:.12s"><span class="bs-n">B</span>Projects &amp; capstones you will build</div>
-    <div class="capwrap">
-    <div class="capcol proj reveal" style="transition-delay:.14s">
-      <div class="caphead"><span class="capnum">01</span><div><div class="captrack">Live guided projects</div><div class="capweeks">Built with the instructor</div></div></div>
-      <div class="captiles projtiles"><div class="captile"><b>CRM Lead Qualifier Agent</b></div><div class="captile"><b>SupportDesk-RAG</b></div><div class="captile"><b>Multi-Agent Travel Planner</b></div><div class="captile"><b>AxiomCart - Voice-Enabled Shopping Assistant</b></div><div class="captile"><b>Real Estate Negotiation Simulator</b></div><div class="captile"><b>Hybrid Product Search Agent</b></div><div class="captile"><b>Production-Ready Fintech Support Agent</b></div><div class="captile"><b>Domain-Specific Fine-Tuned Agent</b></div></div>
-    </div>
-    <div class="capcol reveal" style="transition-delay:.2s">
-      <div class="caphead">
-        <span class="capnum">02</span>
-        <div><div class="captrack">Agentic AI Capstone</div><div class="capweeks">Pick one</div></div>
-      </div>
-      <div class="captiles"><div class="captile"><b>AI Finance Assistant</b><span>Agentic workflows over financial data</span></div><div class="captile"><b>Call Center Intelligence</b><span>Transcripts, intent and QA at scale</span></div><div class="captile"><b>Multi-Agent Support Assistant</b><span>Agents that hand off to each other</span></div><div class="captile"><b>SmartDesk AI</b><span>An internal helpdesk that resolves, not routes</span></div><div class="captile"><b>AI Content Marketing Assistant</b><span>Research, draft and evaluate in one loop</span></div><div class="captile byop"><b>Bring Your Own Project</b><span>Scoped with your mentor</span></div></div>
-    </div>
-    <div class="capcol accent reveal" style="transition-delay:.34s">
-      <div class="caphead">
-        <span class="capnum accent">03</span>
-        <div><div class="captrack">FDE Engagement Capstone</div><div class="capweeks">Pick one</div></div>
-      </div>
-      <div class="captiles two"><div class="captile big"><b>PriorAuth AI</b><span>Healthcare</span></div><div class="captile big"><b>ClaimSense AI</b><span>Insurance</span></div></div>
-    </div>
+    <div class="b2-path">
+    <div class="b2-stage reveal" style="transition-delay:.12s"><div class="b2-h"><span class="b2-n">1</span><div><div class="b2-tt">8 live guided projects</div><div class="b2-st">Built with the instructor</div></div></div><ol class="b2-proj"><li><i>01</i>CRM Lead Qualifier Agent</li><li><i>02</i>SupportDesk-RAG</li><li><i>03</i>Multi-Agent Travel Planner</li><li><i>04</i>AxiomCart - Voice-Enabled Shopping Assistant</li><li><i>05</i>Real Estate Negotiation Simulator</li><li><i>06</i>Hybrid Product Search Agent</li><li><i>07</i>Production-Ready Fintech Support Agent</li><li><i>08</i>Domain-Specific Fine-Tuned Agent</li></ol></div>
+    <div class="b2-arrow reveal" style="transition-delay:.2s"></div>
+    <div class="b2-stage reveal" style="transition-delay:.26s"><div class="b2-h"><span class="b2-n">2</span><div><div class="b2-tt">Agentic AI Capstone</div><div class="b2-st">Pick one</div></div></div><ul class="b2-cap"><li><b>AI Finance Assistant</b><span>Agentic workflows over financial data</span></li><li><b>Call Center Intelligence</b><span>Transcripts, intent and QA at scale</span></li><li><b>Multi-Agent Support Assistant</b><span>Agents that hand off to each other</span></li><li><b>SmartDesk AI</b><span>An internal helpdesk that resolves, not routes</span></li><li><b>AI Content Marketing Assistant</b><span>Research, draft and evaluate in one loop</span></li><li class="byop"><b>Bring Your Own Project</b><span>Scoped with your mentor</span></li></ul></div>
+    <div class="b2-arrow reveal" style="transition-delay:.34s"></div>
+    <div class="b2-stage b2-fde reveal" style="transition-delay:.4s"><div class="b2-h"><span class="b2-n">3</span><div><div class="b2-tt">FDE Engagement Capstone</div><div class="b2-st">Pick one</div></div></div><ul class="b2-big"><li><b>PriorAuth AI</b><span>Healthcare</span></li><li><b>ClaimSense AI</b><span>Insurance</span></li></ul></div>
   </div>
-    <div class="callout reveal" style="transition-delay:.55s;margin-top:clamp(10px,1.8vh,18px)">You build not just a portfolio piece. <span class="hl" style="color:#fff;border-bottom-color:#fff">A system someone else can run.</span></div>
-    </div>
-  </div>
+  <div class="b2-tools reveal" style="transition-delay:.5s"><div class="b2-tl">Tools you will use</div><div class="b2-tg"><div class="b2-t"><b>Languages &amp; Dev Tools</b><span>Python &middot; VSCode &middot; Git &middot; Google Colab</span></div><div class="b2-t"><b>App &amp; UI</b><span>Streamlit &middot; FastAPI</span></div><div class="b2-t"><b>Agent Frameworks</b><span>LangChain &middot; LangGraph &middot; LlamaIndex &middot; Google ADK</span></div><div class="b2-t"><b>LLMs &amp; APIs</b><span>OpenAI API &middot; Tavily API &middot; SerpAPI</span></div><div class="b2-t"><b>Retrieval &amp; Data</b><span>FAISS &middot; Chroma &middot; Qdrant &middot; FastEmbed &middot; Hugging Face &middot; BGE &middot; OpenAI Embeddings &middot; Pandas &middot; HTTPX</span></div><div class="b2-t"><b>Evaluation &amp; Safety</b><span>LangSmith &middot; DeepEval &middot; Guardrails AI &middot; Microsoft Presidio &middot; tiktoken</span></div><div class="b2-t"><b>Multimodal &amp; Protocols</b><span>Whisper &middot; OpenAI TTS &middot; FastMCP &middot; A2A &middot; LangChain LCEL</span></div><div class="b2-t"><b>Fine-Tuning</b><span>Hugging Face Transformers &middot; PEFT &middot; QLoRA &middot; TRL SFTTrainer &middot; BitsAndBytes &middot; HF Hub</span></div><div class="b2-t"><b>FDE Tooling</b><span>OpenAI Agents SDK &middot; AWS Bedrock AgentCore</span></div><div class="b2-t"><b>Deployment</b><span>Docker &middot; AWS &middot; Kubernetes &middot; CI/CD concepts</span></div></div></div>
+  <div class="b2-line reveal" style="transition-delay:.6s">You build not just a portfolio piece. <span class="hl" style="color:#fff;border-bottom-color:#fff">A system someone else can run.</span></div>
 </div>
 <div class="source">IK FDE Course 23-week curriculum, 2026. Full stack and project list in the FDE Course KYP.</div></section>
 
